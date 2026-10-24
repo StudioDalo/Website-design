@@ -1,7 +1,9 @@
-# Studio Dalo — website upload package
+# Studio Da'lo — website upload package
 
-Download studio-dalo-upload.zip using GitHub's download button, unzip it, and drag the complete studio-dalo folder into https://app.netlify.com/drop in your browser. Sign in or choose a free account if asked. No terminal commands or domain purchase are needed. Netlify gives you the website link after upload.
+The public name is now **Studio Da'lo**, including the wordmark, navigation, footer, project captions, browser titles and sharing text.
 
-This is the compiled interactive demonstration website, not source code or screenshots. It contains eight labelled demonstration projects with original illustrations. The enquiry form remains demo-only and does not send messages.
+Download studio-dalo-upload.zip using GitHub's download button and unzip it. To update your existing website, open your Netlify project imaginative-belekoy-450f0d, choose Deploys, and drag the complete studio-dalo folder into the manual deployment upload area. This updates the same website address. No terminal commands or domain purchase are needed.
 
-Prepared 24 October 2026. Static build and all 17 browser journeys passed. No hosting upload has been completed from this coding environment. No paid purchase is authorised.
+This is the compiled interactive demonstration website, not source code or screenshots. Eight labelled demonstration projects use original illustrations. The enquiry form remains demo-only and does not send messages.
+
+Updated 24 October 2026. Static production build, type checks, lint, nine data tests and all 17 browser journeys passed. The updated package has not yet been deployed to Netlify; the account owner must upload it through the existing project.
