@@ -4,7 +4,7 @@ The owner authorised temporary public deployment on 24 October 2026. The existin
 
 ## Update the existing website in a browser
 
-1. [Download the tested website ZIP](https://github.com/StudioDalo/Website-design/raw/15dc7e8d6170719f1742835a03ae80162721c10d/studio-dalo-upload.zip).
+1. [Download the tested website ZIP](https://github.com/StudioDalo/Website-design/raw/5fe924a7a288725b53e0ebd374bea567d0ed54da/studio-dalo-upload.zip).
 2. On Windows, right-click the ZIP and choose **Extract All**. Inside is a folder named **studio-dalo**.
 3. Open your existing Netlify project **imaginative-belekoy-450f0d**, then **Deploys**.
 4. Upload the entire new **studio-dalo** folder in the manual deployment area. Wait until Netlify reports success.

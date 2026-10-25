@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "sanity dev --host 0.0.0.0",
-    "build": "sanity build ../.next-static/admin -y",
+    "build": "sanity build ../.next-static/admin -y && node ../scripts/finalize-studio-build.mjs",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

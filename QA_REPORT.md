@@ -98,3 +98,5 @@ Current checks supersede the earlier 22-journey count:
 The owner supplied public project ID `eurg3hlb`, dataset `production`. Login, member permissions, CORS, media import, webhook triggers and actual publish-to-Netlify remain account-dependent and have not been verified. Direct Sanity API access is blocked by this environment’s outbound proxy (HTTP tunnel 403); this is not evidence of an account fault. No real CMS document or asset was written by the assistant. No paid service was purchased.
 
 The enquiry form remains local demo-only. No real delivery or stored enquiry system is configured. Browser tests use desktop Chromium with emulated viewport/preferences, not physical iOS/Android devices or a screen-reader certification.
+
+The final standalone editor build verifies all seven entry assets resolve under `/admin/`, including favicon paths, and allows browser zoom. The owner reports saving the website origin with credentials enabled in Sanity CORS; browser sign-in and publishing are still awaiting the new Netlify upload.
