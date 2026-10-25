@@ -1,0 +1,16 @@
+node_modules/
+.next/
+*.tsbuildinfo
+.env*
+!.env.example
+playwright-report/
+test-results/
+artifacts/*.log
+
+.next-static/
+out/
+
+.cms-test-export/
+studio/tmp/
+studio/.sanity/
+.cache/

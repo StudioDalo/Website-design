@@ -1,0 +1,38 @@
+export type Media = {
+  src: string;
+  type: "image" | "drawing" | "video";
+  width: number;
+  height: number;
+  aspectRatio: number;
+  alt: string;
+  caption: string;
+  credit: string;
+  poster?: string;
+  focalX?: number;
+  focalY?: number;
+};
+export type Project = {
+  id: string;
+  slug: string;
+  title: string;
+  discipline: string;
+  sector: string;
+  year?: number;
+  location?: string;
+  status?: string;
+  introduction: string;
+  overview?: string;
+  challenge?: string;
+  approach?: string;
+  outcome?: string;
+  role?: string;
+  contribution?: string;
+  practice?: string;
+  collaborators?: string[];
+  hero: Media;
+  gallery: Media[];
+  featuredOrder: number;
+  approved: boolean;
+  placeholder: boolean;
+  tags: string[];
+};

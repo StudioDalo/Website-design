@@ -1,0 +1,25 @@
+{
+  "name": "studio-dalo-editor",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev --host 0.0.0.0",
+    "build": "sanity build ../.next-static/admin -y",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "sanity": "6.20.0",
+    "react": "19.3.1",
+    "react-dom": "19.3.1",
+    "styled-components": "^6.1.19"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "typescript": "6.0.3"
+  },
+  "engines": {
+    "node": ">=24 <25"
+  }
+}
