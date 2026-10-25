@@ -47,7 +47,7 @@ Netlify provides deployment rollback. Sanity offers document history according t
 - **Reorder:** change the Collection order number. Smaller numbers appear first.
 - **Homepage:** Website settings → Homepage for headings, copy and images; About for biography; Approach for steps and capabilities; Identity for the contact email and studio identity.
 - **Hero:** select Image sequence and choose up to six stills, or Short film and upload a compressed MP4/WebM, dimensions and poster. Aim for 6–12 seconds and under 8 MB. Video is muted, pausable and pauses offscreen. Reduced motion/data saving show the poster. The circular reveal is retained.
-- **Fonts:** Appearance offers Manrope, system sans and Georgia for text; Instrument Serif, Georgia and Manrope for emphasis. Comfortable and Larger presets keep visible text at least 20px at default browser settings. The brand wordmark remains Manrope to preserve its design.
+- **Fonts:** Appearance offers Manrope, system sans and Georgia for text; Instrument Serif, Georgia and Manrope for emphasis. The Balanced preset uses 16px supporting text and 18–20px body copy. The optional Larger preset increases those sizes by 12.5%. The brand wordmark remains Manrope to preserve its design.
 - **Image crop:** use the image hotspot to choose its focal point. Full-image enlargement remains available in projects.
 
 **Sanity media asset URLs are publicly retrievable by anyone who has the URL**, even when attached to a draft or a private dataset. Do not upload confidential client material to this media library. Draft document access and asset privacy are different things.

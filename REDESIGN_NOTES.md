@@ -36,3 +36,7 @@ The upload package updates the existing Netlify project when its owner uploads i
 The 20px minimum applies to visible website text at default settings, including navigation, controls, captions, metadata, project sheets and forms. Former 12px labels are 24px. The header mark is 46px on desktop/42px on phones; STUDIO is 28px/24px. Layouts accommodate the larger text with wrapping, adaptive columns and one-column phone cards. Darker muted text and a stronger hero scrim improve contrast. Native scroll, the circular opening and reduced-motion behavior remain.
 
 The prepared Sanity editor is isolated in `studio/`; the public portfolio does not load that package. Website settings are passed through a server-provided context; media supports CMS focal points and an optional paused/muted hero film. The Netlify build wrapper, approved-only example import, singleton settings, project content preview and publication validation are implemented. No real account or webhook has been connected or tested. See `EDITOR_SETUP.md` for the remaining owner setup.
+
+## Typography rebalanced after owner review
+
+The initial universal 20px floor and doubled 24–28px paragraphs overwhelmed the composition. The revised scale uses 16px supporting text and 18–20px prose while retaining display headings, enlarged marks, local fonts, contrast and wrapping. The circular reveal, images, project behavior and standalone Sanity setup are unchanged.

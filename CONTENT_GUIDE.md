@@ -102,3 +102,7 @@ See `REDESIGN_NOTES.md` for the new component and styling boundaries and `MEDIA_
 ## Readability update — 25 October 2026
 
 Visible site text has a 20px minimum at default browser settings. Former 12px labels are 24px; the opening STUDIO label is 28px on desktop and 24px on phones. Controls, captions, project details, form labels and footer text share the readable baseline. Mobile cards use one column and text wraps rather than shrinking. The larger editor preset increases the rem baseline to 18px, giving a 22.5px minimum. Preserve these limits when adding styles or content.
+
+## Balanced typography correction — 25 October 2026
+
+The owner found the doubled typography too large. This supersedes the earlier 20px minimum. Supporting labels and captions now have a 16px minimum; prose is 18–20px. Navigation is 18px, project titles are 20–22px, and display headings retain their hierarchy. The header mark stays enlarged (46px desktop/42px phone); STUDIO above the hero is 24px desktop/22px phone. The Balanced editor preset uses these defaults; Larger increases the rem baseline by 12.5%. Regression checks enforce both the 16px floor and the 18–20px prose range, so accessibility fixes do not inadvertently enlarge all the copy again.

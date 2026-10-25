@@ -102,3 +102,7 @@ The enquiry form remains local demo-only. No real delivery or stored enquiry sys
 The final standalone editor build verifies all seven entry assets resolve under `/admin/`, including favicon paths, and allows browser zoom. The owner reports saving the website origin with credentials enabled in Sanity CORS; browser sign-in and publishing are still awaiting the new Netlify upload.
 
 A separate editor browser check loads the real compiled `/admin/` entry, checks local chunks/styles for HTTP errors and verifies the sign-in return address stays `/admin/`. This test mocks the unauthenticated Sanity API boundary; it confirms deployment routing without claiming a real sign-in. No page errors or failed local responses were recorded.
+
+## Typography correction after owner feedback — 25 October 2026
+
+The earlier universal 20px floor is superseded. The Balanced preset now uses 16px supporting text and 18–20px prose; large headings, enlarged marks and the circular reveal are retained. All 15 unit/data checks and lint/type checks pass. The static production build and all 27 browser journeys pass, including the revised 16px floor, an upper bound of 20px on ordinary prose at default settings, and 200% text enlargement. The editor builds with updated preset descriptions; its isolated sign-in-route check passes (authentication API mocked, not a live account login). Desktop/phone captures record no page/console errors, failed local responses or page overflow.

@@ -456,8 +456,14 @@ export const siteSettings = defineType({
           description: "Both presets preserve the minimum readable text size.",
           options: {
             list: [
-              { title: "Comfortable — minimum 20px", value: "comfortable" },
-              { title: "Larger — minimum 22.5px", value: "larger" },
+              {
+                title: "Balanced — 16px labels, 18–20px body",
+                value: "comfortable",
+              },
+              {
+                title: "Larger — 18px labels, 20–22.5px body",
+                value: "larger",
+              },
             ],
           },
         }),

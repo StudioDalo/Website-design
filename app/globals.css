@@ -24,7 +24,7 @@ body {
   margin: 0;
   background: var(--paper);
   color: var(--ink);
-  font: 400 1.375rem/1.6 var(--sans);
+  font: 400 1.125rem/1.6 var(--sans);
   -webkit-font-smoothing: antialiased;
 }
 ::selection {
@@ -125,7 +125,7 @@ a svg {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -176,7 +176,7 @@ a svg {
   display: flex;
   gap: 10px;
   align-items: center;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 800;
   letter-spacing: -0.025em;
   line-height: 1.03;
@@ -197,7 +197,7 @@ a svg {
   align-items: center;
   gap: 32px;
   margin-left: auto;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 500;
 }
 .desktop-nav a {
@@ -312,7 +312,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   top: calc(58% - clamp(80px, 29vw, 440px) * 0.75 - 36px);
   left: 50%;
   transform: translateX(-50%);
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 600;
   letter-spacing: 0.4em;
   opacity: var(--hero-intro);
@@ -325,7 +325,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   opacity: var(--hero-intro);
 }
 .cinema-identity .eyebrow {
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--muted);
 }
 .cinema-identity p {
@@ -343,7 +343,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   justify-content: center;
   gap: 23px;
   z-index: 3;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   letter-spacing: -0.02em;
   opacity: var(--hero-intro);
 }
@@ -365,7 +365,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 .cinema-statement .eyebrow {
   margin-bottom: 28px;
   color: #e1e5d3;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 .cinema-statement h2 {
   font-size: clamp(44px, 6.9vw, 112px);
@@ -378,7 +378,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 .cinema-statement > p {
   max-width: 330px;
   margin-top: 24px;
-  font-size: 1.625rem;
+  font-size: 1.25rem;
   line-height: 1.7;
   color: #eaeee2;
 }
@@ -397,7 +397,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   display: flex;
   align-items: center;
   gap: 9px;
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--ink);
   padding: 11px 13px;
   background: #f5f2eac9;
@@ -423,7 +423,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   display: inline-flex;
   align-items: center;
   gap: 26px;
-  font-size: 1.375rem;
+  font-size: 1.125rem;
   font-weight: 500;
   border: 1px solid #f5f2ea88;
   background: #f5f2eade;
@@ -461,7 +461,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   color: var(--ink);
   padding: 2px 5px 2px 12px;
   border-radius: 3px;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 .reel-controls button {
   display: flex;
@@ -469,7 +469,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   gap: 8px;
   min-width: 44px;
   min-height: 44px;
-  font-size: 1.25rem;
+  font-size: 1rem;
   padding: 6px;
 }
 .reel-controls button > svg {
@@ -483,7 +483,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   z-index: 4;
   max-width: 52%;
   color: var(--ink);
-  font-size: 1.25rem;
+  font-size: 1rem;
   background: #f5f2eac9;
   padding: 4px 7px;
 }
@@ -537,7 +537,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   border-bottom: 1px solid var(--line);
   padding-bottom: 34px;
   gap: 20px;
-  font-size: 1.375rem;
+  font-size: 1.125rem;
   color: var(--muted);
 }
 .work-section {
@@ -562,14 +562,14 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   letter-spacing: -0.065em;
 }
 .section-heading h2 sup {
-  font: 500 1.625rem var(--sans);
+  font: 500 1rem var(--sans);
   vertical-align: top;
   display: inline-block;
   margin: 12px 0 0 18px;
   letter-spacing: 0;
 }
 .section-heading > p {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   line-height: 1.85;
   color: var(--muted);
   max-width: 300px;
@@ -582,7 +582,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   padding: 17px 0;
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: #58664f;
 }
 .demo-banner a {
@@ -613,7 +613,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   padding: 10px 16px;
   border: 1px solid transparent;
   border-radius: 99px;
-  font-size: 1.375rem;
+  font-size: 1.125rem;
   color: var(--muted);
   transition:
     background 0.25s,
@@ -623,7 +623,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 }
 .filters button sup {
   vertical-align: top;
-  font-size: 1.25rem;
+  font-size: 1rem;
   margin-left: 7px;
 }
 .filters button.active {
@@ -649,7 +649,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 .search input {
   min-width: 0;
   width: 100%;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   border: 0;
   background: transparent;
   color: var(--ink);
@@ -664,7 +664,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   justify-content: space-between;
   gap: 25px;
   margin-bottom: 32px;
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--muted);
 }
 .result-count {
@@ -678,7 +678,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   gap: 5px;
   border-left: 1px solid var(--line);
   padding-left: 14px;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 .reset-inline svg {
   height: 13px;
@@ -742,7 +742,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   outline-offset: 4px;
 }
 .motion-control small {
-  font-size: 1.25rem;
+  font-size: 1rem;
   border-left: 1px solid var(--line);
   padding-left: 9px;
   margin-left: 3px;
@@ -762,7 +762,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   padding: 5px 11px;
   border-radius: 3px;
   color: var(--muted);
-  font-size: 1.25rem;
+  font-size: 1rem;
   transition:
     background 0.25s,
     color 0.25s;
@@ -813,7 +813,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   position: absolute;
   top: 12px;
   left: 12px;
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 500;
   padding: 3px 7px;
   color: var(--ink);
@@ -851,7 +851,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   background: #f5f2eae6;
   color: var(--ink);
   padding: 4px 7px;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 .card-caption {
   display: grid;
@@ -860,7 +860,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   padding-top: 16px;
 }
 .card-caption h3 {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 500;
   letter-spacing: -0.04em;
   line-height: 1.4;
@@ -876,7 +876,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--muted);
 }
 .card-caption p span {
@@ -889,7 +889,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   border-top: 1px solid var(--line);
   padding-top: 22px;
   margin-top: 45px;
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--muted);
 }
 .work-footnote span:last-child {
@@ -909,7 +909,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   gap: 24px;
 }
 .index-header {
-  font-size: 1.25rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.12em;
   color: var(--muted);
@@ -920,7 +920,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   padding: 18px 0;
   border-top: 1px solid var(--line);
   min-height: 123px;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   transform-origin: top left;
   transition: background 0.25s;
 }
@@ -934,7 +934,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   min-width: 0;
 }
 .index-project > small {
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--muted);
 }
 .index-project .media {
@@ -946,14 +946,14 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 }
 .index-project strong {
   display: block;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 500;
   letter-spacing: -0.04em;
   overflow-wrap: anywhere;
 }
 .index-project span > small {
   display: block;
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--muted);
   margin-top: 4px;
 }
@@ -984,7 +984,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   margin: 20px 0;
 }
 .empty-state p {
-  font-size: 1.625rem;
+  font-size: 1.25rem;
   color: var(--muted);
 }
 .empty-state .button {
@@ -1023,7 +1023,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   letter-spacing: -0.065em;
 }
 .material-interlude > div:last-child > span:last-child {
-  font-size: 1.25rem;
+  font-size: 1rem;
   opacity: 0.8;
 }
 .about-section {
@@ -1058,7 +1058,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   gap: 12px;
   padding-top: 14px;
   color: var(--muted);
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 .about-copy h2 {
   font-size: clamp(42px, 4.1vw, 68px);
@@ -1068,12 +1068,12 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 }
 .about-copy p {
   max-width: 460px;
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   line-height: 1.85;
   color: var(--muted);
 }
 .about-copy .about-lead {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   line-height: 1.5;
   letter-spacing: -0.025em;
   color: var(--ink);
@@ -1097,17 +1097,17 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 .designer-line strong {
   display: block;
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
 }
 .designer-line div > span {
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--muted);
 }
 .about-copy .profile-note {
   border-top: 1px solid var(--line);
   margin-top: 25px;
   padding-top: 17px;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 .approach-section {
   padding: 90px var(--gutter) 130px;
@@ -1127,16 +1127,16 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 .approach-number {
   display: block;
   color: var(--muted);
-  font-size: 1.25rem;
+  font-size: 1rem;
   margin-bottom: 65px;
 }
 .approach-grid h3 {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   letter-spacing: -0.045em;
   margin-bottom: 18px;
 }
 .approach-grid p {
-  font-size: 1.625rem;
+  font-size: 1.25rem;
   color: var(--muted);
   line-height: 1.85;
   max-width: 330px;
@@ -1164,11 +1164,11 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   padding: 28px 0;
 }
 .capabilities h3 {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   letter-spacing: -0.045em;
 }
 .capabilities p {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   line-height: 1.8;
   color: var(--muted);
 }
@@ -1201,7 +1201,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 }
 .contact-heading > p {
   max-width: 330px;
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   line-height: 1.85;
   color: #c6d0bd;
 }
@@ -1209,7 +1209,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   margin-top: 20px;
 }
 .contact-heading .contact-demo-note {
-  font-size: 1.375rem;
+  font-size: 1.125rem;
   max-width: 310px;
   margin-top: 42px;
   color: #abbba0;
@@ -1232,7 +1232,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 .form-grid label {
   display: block;
   min-width: 0;
-  font-size: 1.375rem;
+  font-size: 1.125rem;
   color: #d4dccb;
 }
 .form-grid label > span[aria-hidden] {
@@ -1241,7 +1241,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 .optional {
   opacity: 0.7;
   margin-left: 5px;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 .form-grid input,
 .form-grid textarea,
@@ -1255,7 +1255,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   border: 0;
   border-bottom: 1px solid #617657;
   color: var(--paper);
-  font-size: 1.375rem;
+  font-size: 1.125rem;
   resize: vertical;
 }
 .form-grid input:focus-visible,
@@ -1268,11 +1268,11 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   min-height: 115px;
 }
 .form-grid textarea::placeholder {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   color: #a7b99b;
 }
 .form-grid select {
-  font-size: 1.625rem;
+  font-size: 1.25rem;
   cursor: pointer;
 }
 .form-grid select option {
@@ -1284,7 +1284,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 }
 .field-error {
   display: block;
-  font-size: 1.375rem;
+  font-size: 1.125rem;
   color: #f4c8b3;
   margin-top: 9px;
 }
@@ -1299,11 +1299,11 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   margin-top: 28px;
 }
 .form-submit small {
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: #adc09e;
 }
 .form-status {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   line-height: 1.8;
 }
 .form-status.visible {
@@ -1322,7 +1322,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   display: block;
   color: #c2d1b4;
   margin-top: 5px;
-  font-size: 1.375rem;
+  font-size: 1.125rem;
 }
 .project-reference {
   display: flex;
@@ -1336,12 +1336,12 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   border-radius: 4px;
 }
 .project-reference .eyebrow {
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: #b6c8a6;
 }
 .project-reference strong {
   display: block;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 500;
   margin-top: 6px;
   overflow-wrap: anywhere;
@@ -1361,7 +1361,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   padding: 17px 22px;
   border: 1px solid transparent;
   border-radius: 5px;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 500;
   transition:
     background 0.25s,
@@ -1394,7 +1394,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   align-items: center;
   gap: 14px;
   min-height: 35px;
-  font-size: 1.375rem;
+  font-size: 1.125rem;
   text-underline-offset: 5px;
 }
 .text-button:hover {
@@ -1415,7 +1415,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   margin-bottom: 44px;
 }
 .footer-top .brand {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   font-weight: 700;
   letter-spacing: -0.055em;
   gap: 15px;
@@ -1425,14 +1425,14 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   height: 38px;
 }
 .footer-top p {
-  font-size: 1.375rem;
+  font-size: 1.125rem;
   color: var(--muted);
 }
 .footer-top > a:last-child {
   display: flex;
   align-items: center;
   gap: 20px;
-  font-size: 1.375rem;
+  font-size: 1.125rem;
 }
 .footer-top > a:last-child svg {
   width: 17px;
@@ -1444,7 +1444,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   gap: 20px;
   padding-top: 22px;
   border-top: 1px solid var(--line);
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--muted);
 }
 .media {
@@ -1478,10 +1478,10 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   color: #4b5d43;
 }
 .media-fallback span {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
 }
 .media-fallback small {
-  font-size: 1.25rem;
+  font-size: 1rem;
   max-width: 270px;
 }
 .is-moving img {
@@ -1561,13 +1561,13 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   padding: 58px 38px 35px;
 }
 .story-intro > .eyebrow {
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--muted);
   margin-bottom: 28px;
 }
 .story-slot {
   display: block;
-  font-size: 1.25rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: #7c8868;
@@ -1582,7 +1582,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 }
 .story-lead {
   color: var(--muted);
-  font-size: 1.625rem;
+  font-size: 1.25rem;
   line-height: 1.85;
   margin-top: 25px;
 }
@@ -1592,14 +1592,14 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   align-items: center;
   gap: 17px;
   margin-top: 24px;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 .story-meta > span {
   padding-right: 17px;
   border-right: 1px solid var(--line);
 }
 .story-meta .text-button {
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 .story-facts {
   display: grid;
@@ -1611,7 +1611,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   border-bottom: 1px solid var(--line);
 }
 .story-facts dt {
-  font-size: 1.25rem;
+  font-size: 1rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--muted);
@@ -1619,13 +1619,13 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 }
 .story-facts dd {
   margin: 0;
-  font-size: 1.375rem;
+  font-size: 1.125rem;
 }
 .story-enquiry {
   margin-top: 21px;
 }
 .share-feedback {
-  font-size: 1.375rem;
+  font-size: 1.125rem;
   color: #5f7449;
   line-height: 1.7;
   margin-top: 10px;
@@ -1650,7 +1650,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 }
 .story-hero figcaption {
   padding: 14px 23px;
-  font-size: 1.25rem;
+  font-size: 1rem;
   color: var(--muted);
   line-height: 1.8;
 }
@@ -1661,7 +1661,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  font-size: 1.25rem;
+  font-size: 1rem;
   background: var(--paper);
   padding: 10px 13px;
   border-radius: 3px;
@@ -1684,7 +1684,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   margin: 27px 0 0;
 }
 .project-credits dt {
-  font-size: 1.25rem;
+  font-size: 1rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: var(--muted);
@@ -1692,7 +1692,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 }
 .project-credits dd {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   line-height: 1.8;
 }
 .credits-note {
@@ -1700,19 +1700,19 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   margin-top: 23px;
   padding-top: 17px;
   color: var(--muted);
-  font-size: 1.25rem;
+  font-size: 1rem;
   line-height: 1.85;
 }
 .story-prose section + section {
   margin-top: 30px;
 }
 .story-prose h2 {
-  font-size: 1.625rem;
+  font-size: 1.25rem;
   letter-spacing: -0.045em;
   margin-bottom: 15px;
 }
 .story-prose p {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   line-height: 1.9;
   color: var(--muted);
 }
@@ -1742,14 +1742,14 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   object-fit: contain;
 }
 .story-gallery figcaption {
-  font-size: 1.25rem;
+  font-size: 1rem;
   line-height: 1.8;
   color: var(--muted);
   padding-top: 13px;
 }
 .story-gallery figcaption > span {
   display: block;
-  font-size: 1.25rem;
+  font-size: 1rem;
   margin-top: 5px;
 }
 .story-conversation {
@@ -1759,7 +1759,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 }
 .story-conversation > .eyebrow {
   justify-content: center;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 .story-conversation h2 {
   font: italic 400 70px/1.1 var(--serif);
@@ -1768,7 +1768,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 }
 .story-conversation > p {
   color: var(--muted);
-  font-size: 1.25rem;
+  font-size: 1rem;
   margin-top: 18px;
 }
 .project-pagination {
@@ -1783,7 +1783,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   overflow-wrap: anywhere;
 }
 .project-neighbor .eyebrow {
-  font-size: 1.25rem;
+  font-size: 1rem;
   margin-bottom: 12px;
 }
 .project-neighbor svg {
@@ -1791,7 +1791,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   height: 16px;
 }
 .project-neighbor > span:last-child {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
   letter-spacing: -0.035em;
 }
 .project-neighbor.next {
@@ -1825,7 +1825,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 }
 .zoom-dialog h2 {
   padding: 35px 75px 28px 30px;
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 .zoom-scroll {
   overflow: auto;
@@ -1842,7 +1842,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 .zoom-dialog .dialog-surface > p {
   padding: 22px 30px 0;
   color: var(--muted);
-  font-size: 1.25rem;
+  font-size: 1rem;
 }
 .zoom-dialog .text-button {
   margin: 15px 30px 30px;
@@ -1896,7 +1896,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   line-height: 1.1;
 }
 .menu-dialog nav a small {
-  font-size: 1.25rem;
+  font-size: 1rem;
   letter-spacing: 0;
   color: #a9bf99;
 }
@@ -1906,7 +1906,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 .menu-dialog p {
   margin-top: 35px;
   color: #c2cfb5;
-  font-size: 1.625rem;
+  font-size: 1.25rem;
   line-height: 1.85;
 }
 .not-found {
@@ -1921,7 +1921,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 }
 .not-found p {
   color: var(--muted);
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   max-width: 450px;
   margin-bottom: 35px;
 }
@@ -1980,16 +1980,16 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     font-size: 4.7vw;
   }
   .about-copy .about-lead {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
   .about-copy p {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
   .approach-grid {
     gap: 28px;
   }
   .approach-grid h3 {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
   .capabilities {
     gap: 0 30px;
@@ -2019,7 +2019,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     font-size: 2.875rem;
   }
   .story-lead {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
   .story-hero .media {
     height: 72svh;
@@ -2043,7 +2043,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     border-radius: 7px;
   }
   .brand {
-    font-size: 1.375rem;
+    font-size: 1.125rem;
     gap: 8px;
   }
   .brand > svg {
@@ -2072,13 +2072,13 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   }
   .cinema-studio-label {
     top: calc(58% - 33vw * 0.75 - 36px);
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .cinema-identity {
     top: 17%;
   }
   .cinema-identity .eyebrow {
-    font-size: 1.25rem;
+    font-size: 1rem;
     letter-spacing: 0.1em;
   }
   .cinema-identity p {
@@ -2087,7 +2087,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   }
   .cinema-byline {
     top: 66%;
-    font-size: 1.375rem;
+    font-size: 1.125rem;
     gap: 10px;
     flex-wrap: wrap;
     padding: 0 30px;
@@ -2106,7 +2106,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     bottom: 195px;
   }
   .cinema-statement .eyebrow {
-    font-size: 1.25rem;
+    font-size: 1rem;
     margin-bottom: 23px;
     max-width: 220px;
   }
@@ -2115,7 +2115,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     line-height: 1.05;
   }
   .cinema-statement > p {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     max-width: 270px;
   }
   .cinema-bottom {
@@ -2123,7 +2123,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     gap: 12px;
   }
   .cinema-count {
-    font-size: 1.25rem;
+    font-size: 1rem;
     padding: 10px;
     gap: 6px;
   }
@@ -2131,7 +2131,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     display: none;
   }
   .hero-action {
-    font-size: 1.25rem;
+    font-size: 1rem;
     gap: 13px;
     padding-left: 13px;
   }
@@ -2146,11 +2146,11 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   .reel-controls {
     bottom: 129px;
     gap: 9px;
-    font-size: 1.25rem;
+    font-size: 1rem;
     right: var(--gutter);
   }
   .reel-controls button {
-    font-size: 1.25rem;
+    font-size: 1rem;
     min-height: 44px;
     padding: 5px;
   }
@@ -2158,14 +2158,14 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     max-width: calc(100% - 44px);
     left: var(--gutter);
     bottom: 94px;
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .collection-intro {
     padding-top: 85px;
     padding-bottom: 40px;
   }
   .collection-intro > .eyebrow {
-    font-size: 1.25rem;
+    font-size: 1rem;
     margin-bottom: 24px;
   }
   .collection-intro > p {
@@ -2174,7 +2174,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   }
   .collection-intro > div {
     display: block;
-    font-size: 1.25rem;
+    font-size: 1rem;
     margin-top: 30px;
     padding-bottom: 28px;
   }
@@ -2193,7 +2193,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     margin-bottom: 28px;
   }
   .section-index {
-    font-size: 1.25rem;
+    font-size: 1rem;
     margin-bottom: 22px;
   }
   .section-heading h2 {
@@ -2201,15 +2201,15 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     line-height: 1.03;
   }
   .section-heading h2 sup {
-    font-size: 1.25rem;
+    font-size: 1rem;
     margin: 8px 0 0 11px;
   }
   .section-heading > p {
     margin-top: 23px;
-    font-size: 1.375rem;
+    font-size: 1.125rem;
   }
   .demo-banner {
-    font-size: 1.25rem;
+    font-size: 1rem;
     line-height: 1.85;
     align-items: flex-start;
     padding: 15px 0;
@@ -2233,11 +2233,11 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     justify-content: space-between;
   }
   .filters button {
-    font-size: 1.25rem;
+    font-size: 1rem;
     padding: 10px 11px;
   }
   .filters button sup {
-    font-size: 1.25rem;
+    font-size: 1rem;
     margin-left: 4px;
   }
   .search {
@@ -2246,10 +2246,10 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     min-height: 44px;
   }
   .search input {
-    font-size: 1.625rem;
+    font-size: 1.25rem;
   }
   .work-controls {
-    font-size: 1.25rem;
+    font-size: 1rem;
     margin-bottom: 25px;
     gap: 8px;
   }
@@ -2257,7 +2257,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     gap: 12px;
   }
   .motion-control {
-    font-size: 1.25rem;
+    font-size: 1rem;
     gap: 5px;
   }
   .switch {
@@ -2276,7 +2276,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     gap: 2px;
   }
   .view-switch button {
-    font-size: 1.25rem;
+    font-size: 1rem;
     padding: 5px 6px;
     gap: 4px;
   }
@@ -2289,7 +2289,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     white-space: nowrap;
   }
   .reset-inline {
-    font-size: 1.25rem;
+    font-size: 1rem;
     padding-left: 7px;
     gap: 3px;
   }
@@ -2306,13 +2306,13 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   .card-number {
     top: 8px;
     left: 8px;
-    font-size: 1.25rem;
+    font-size: 1rem;
     padding: 2px 5px;
   }
   .card-demo {
     bottom: 8px;
     left: 8px;
-    font-size: 1.25rem;
+    font-size: 1rem;
     padding: 3px 5px;
   }
   .card-open {
@@ -2324,7 +2324,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     gap: 5px;
   }
   .card-caption h3 {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     letter-spacing: -0.035em;
   }
   .card-caption > svg {
@@ -2333,12 +2333,12 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     margin-top: 4px;
   }
   .card-caption p {
-    font-size: 1.25rem;
+    font-size: 1rem;
     gap: 5px;
   }
   .work-footnote {
     margin-top: 30px;
-    font-size: 1.25rem;
+    font-size: 1rem;
     line-height: 1.85;
   }
   .work-footnote span:last-child {
@@ -2347,7 +2347,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   .index-header {
     grid-template-columns: 1fr 22px;
     gap: 12px;
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .index-header > span:nth-child(2),
   .index-header > span:nth-child(3) {
@@ -2377,14 +2377,14 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     height: 76px;
   }
   .index-project strong {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
   .index-project span > small {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .index-project span > .index-mobile-meta {
     display: block;
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .index-row > span:last-child {
     font-size: 0;
@@ -2400,10 +2400,10 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     font-size: 2.875rem;
   }
   .empty-state p {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
   .empty-state .button {
-    font-size: 1.25rem;
+    font-size: 1rem;
     gap: 25px;
   }
   .material-interlude {
@@ -2415,13 +2415,13 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     bottom: 43px;
   }
   .material-interlude .eyebrow {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .material-interlude p {
     font-size: 3.4375rem;
   }
   .material-interlude > div:last-child > span:last-child {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .about-section {
     display: flex;
@@ -2437,7 +2437,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     aspect-ratio: 1.1 !important;
   }
   .about-art-caption {
-    font-size: 1.25rem;
+    font-size: 1rem;
     line-height: 1.7;
   }
   .about-art-caption span {
@@ -2454,13 +2454,13 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     margin-bottom: 25px;
   }
   .about-copy .about-lead {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
   .about-copy p {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
   }
   .about-copy .profile-note {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .approach-section {
     padding-top: 60px;
@@ -2484,12 +2484,12 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   }
   .approach-grid h3 {
     grid-column: 2;
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     margin-bottom: 15px;
   }
   .approach-grid p {
     grid-column: 2;
-    font-size: 1.625rem;
+    font-size: 1.25rem;
   }
   .capabilities {
     display: block;
@@ -2505,10 +2505,10 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     padding: 23px 0;
   }
   .capabilities h3 {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
   .capabilities p {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .capabilities svg {
     width: 14px;
@@ -2519,38 +2519,38 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     padding: 55px var(--gutter);
   }
   .contact-heading > .eyebrow {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .contact-heading h2 {
     font-size: 3.1875rem;
     margin-top: 32px;
   }
   .contact-heading > p {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
   }
   .contact-heading .contact-demo-note {
-    font-size: 1.375rem;
+    font-size: 1.125rem;
     margin-top: 28px;
   }
   .contact-form {
     padding-top: 45px;
   }
   .contact-form > h3 {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .form-grid {
     gap: 26px 20px;
   }
   .form-grid label {
-    font-size: 1.375rem;
+    font-size: 1.125rem;
   }
   .optional {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .form-grid input,
   .form-grid select,
   .form-grid textarea {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
   .form-submit {
     gap: 20px;
@@ -2567,7 +2567,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     margin-bottom: 32px;
   }
   .footer-top .brand {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     gap: 9px;
   }
   .footer-top .brand svg {
@@ -2577,15 +2577,15 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   .footer-top > p {
     order: 3;
     width: 100%;
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .footer-top > a:last-child {
     margin-left: auto;
-    font-size: 1.25rem;
+    font-size: 1rem;
     gap: 10px;
   }
   .footer-bottom {
-    font-size: 1.25rem;
+    font-size: 1rem;
     flex-wrap: wrap;
     gap: 12px;
   }
@@ -2620,40 +2620,40 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   }
   .story-intro > .eyebrow {
     margin-bottom: 24px;
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .story-slot {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .story-intro h1 {
     font-size: 3.25rem;
     line-height: 1.06;
   }
   .story-lead {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
     line-height: 1.85;
     margin-top: 23px;
   }
   .story-meta {
     margin-top: 20px;
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .story-meta .text-button {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .story-facts {
     margin-top: 20px;
     gap: 16px;
   }
   .story-facts dt {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .story-facts dd {
-    font-size: 1.375rem;
+    font-size: 1.125rem;
   }
   .story-enquiry {
     margin-top: 18px;
-    font-size: 1.375rem;
+    font-size: 1.125rem;
   }
   .story-hero {
     width: 100%;
@@ -2665,13 +2665,13 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     min-height: 280px;
   }
   .story-hero figcaption {
-    font-size: 1.25rem;
+    font-size: 1rem;
     padding: 13px 24px 20px;
   }
   .enlarge-label {
     bottom: 13px;
     right: 13px;
-    font-size: 1.25rem;
+    font-size: 1rem;
     padding: 9px 11px;
   }
   .story-content {
@@ -2681,10 +2681,10 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     gap: 38px;
   }
   .story-prose h2 {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
   .story-prose p {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
   }
   .project-credits dl {
     display: grid;
@@ -2694,13 +2694,13 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   }
   .project-credits dt {
     margin: 0;
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .project-credits dd {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
   .credits-note {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .story-gallery {
     display: block;
@@ -2713,23 +2713,23 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     aspect-ratio: 1.2 !important;
   }
   .story-gallery figcaption {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .story-conversation {
     padding: 43px 24px;
   }
   .story-conversation > .eyebrow {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .story-conversation h2 {
     font-size: 3.1875rem;
   }
   .story-conversation .button {
-    font-size: 1.375rem;
+    font-size: 1.125rem;
     gap: 26px;
   }
   .story-conversation > p {
-    font-size: 1.25rem;
+    font-size: 1rem;
     line-height: 1.8;
   }
   .project-pagination {
@@ -2737,11 +2737,11 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     gap: 20px;
   }
   .project-neighbor .eyebrow {
-    font-size: 1.25rem;
+    font-size: 1rem;
     gap: 6px;
   }
   .project-neighbor > span:last-child {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     line-height: 1.65;
     display: block;
   }
@@ -2761,7 +2761,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   }
   .zoom-dialog h2 {
     padding: 80px 24px 25px;
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .zoom-scroll {
     max-height: 65svh;
@@ -2771,11 +2771,11 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   }
   .zoom-dialog .dialog-surface > p {
     padding: 20px 24px 0;
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .zoom-dialog .text-button {
     margin: 14px 24px 28px;
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .menu-dialog .dialog-surface {
     padding-top: 35px;
@@ -2795,29 +2795,29 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     --gutter: 18px;
   }
   .cinema-identity .eyebrow {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .cinema-identity p {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
   .cinema-byline {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .cinema-statement h2 {
     font-size: 2.5rem;
   }
   .cinema-statement .eyebrow {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .cinema-statement > p {
-    font-size: 1.375rem;
+    font-size: 1.125rem;
   }
   .cinema-count {
-    font-size: 1.25rem;
+    font-size: 1rem;
     padding: 9px;
   }
   .hero-action {
-    font-size: 1.25rem;
+    font-size: 1rem;
     gap: 9px;
     padding-left: 11px;
   }
@@ -2830,7 +2830,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   }
   .cinema-disclosure {
     max-width: calc(100% - 36px);
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .collection-intro > p {
     font-size: 2.125rem;
@@ -2839,11 +2839,11 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     font-size: 2.6875rem;
   }
   .filters button {
-    font-size: 1.25rem;
+    font-size: 1rem;
     padding: 10px 9px;
   }
   .filters button sup {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .work-grid {
     grid-template-columns: 1fr;
@@ -2852,16 +2852,16 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     padding-top: 0;
   }
   .card-caption h3 {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
   .card-caption p {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .card-demo {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .motion-control {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .view-switch button span {
     display: none;
@@ -2874,10 +2874,10 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     font-size: 2.375rem;
   }
   .capabilities h3 {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
   .capabilities p {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   .contact-heading h2 {
     font-size: 2.8125rem;
@@ -2889,7 +2889,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     grid-column: 1;
   }
   .footer-top .brand {
-    font-size: 1.375rem;
+    font-size: 1.125rem;
   }
   .story-intro h1 {
     font-size: 2.8125rem;
@@ -2897,7 +2897,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 }
 /* Readability: retain the visual hierarchy without shrinking controls on phones. */
 :root {
-  --text-min: 1.25rem;
+  --text-min: 1rem;
 }
 .site-header {
   height: auto;
@@ -2905,7 +2905,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   width: min(1240px, calc(100% - 48px));
 }
 .brand {
-  font-size: 1.5rem;
+  font-size: 1.125rem;
 }
 .brand > svg {
   width: 46px;
@@ -2915,7 +2915,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   gap: 26px;
 }
 .cinema-studio-label {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   letter-spacing: 0.32em;
 }
 .cinema-identity {
@@ -3004,7 +3004,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 }
 .card-caption h3,
 .index-project strong {
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   line-height: 1.25;
 }
 .work-footnote {
@@ -3026,7 +3026,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 .story-prose h2,
 .approach-grid h3,
 .capabilities h3 {
-  font-size: 2rem;
+  font-size: 1.75rem;
 }
 .story-facts,
 .story-gallery,
@@ -3049,7 +3049,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   flex-wrap: wrap;
 }
 .form-grid textarea::placeholder {
-  font-size: 1.375rem;
+  font-size: 1.125rem;
   color: #c6d0bd;
 }
 .optional {
@@ -3104,7 +3104,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     padding: 12px 16px;
   }
   .brand {
-    font-size: 1.375rem;
+    font-size: 1.125rem;
   }
   .brand > svg {
     width: 42px;
@@ -3124,10 +3124,10 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     letter-spacing: 0;
   }
   .cinema-identity p {
-    font-size: 2rem;
+    font-size: 1.75rem;
   }
   .cinema-studio-label {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
     top: calc(58% - 33vw * 0.75 - 56px);
   }
   .cinema-byline {
@@ -3210,7 +3210,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     padding-top: 0;
   }
   .card-caption h3 {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
   }
   .index-header {
     display: none;
@@ -3236,7 +3236,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     flex-shrink: 0;
   }
   .index-project strong {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
   .about-art-caption {
     flex-wrap: wrap;
@@ -3244,7 +3244,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
   .approach-grid h3,
   .capabilities h3,
   .story-prose h2 {
-    font-size: 1.875rem;
+    font-size: 1.625rem;
   }
   .capabilities > div {
     grid-template-columns: minmax(0, 1fr) 24px;
@@ -3289,7 +3289,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
     gap: 24px;
   }
   .footer-top .brand {
-    font-size: 1.5rem;
+    font-size: 1.125rem;
   }
   .footer-top .brand svg {
     width: 48px;
@@ -3298,7 +3298,7 @@ html[data-hero-tone="dark"] .site-header .contact-link {
 }
 @media (max-width: 359px) {
   .cinema-identity p {
-    font-size: 1.75rem;
+    font-size: 1.25rem;
   }
   .cinema-statement h2 {
     font-size: 2.375rem;
@@ -3383,7 +3383,7 @@ html[data-heading-font="manrope"] {
     margin-top: 8px;
   }
   .cinema-identity .eyebrow {
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
 }
 @media (max-width: 767px) and (max-height: 740px) {
@@ -3529,5 +3529,55 @@ html[data-heading-font="manrope"] {
   .about-art-caption span:last-child {
     text-align: left;
     margin-top: 8px;
+  }
+}
+
+/* Balanced type scale: readable supporting text, comfortable prose, expressive headings. */
+.site-header {
+  min-height: 80px;
+}
+.brand,
+.footer-top .brand {
+  font-size: 1.375rem;
+}
+.cinema-studio-label {
+  font-size: 1.5rem;
+}
+.eyebrow {
+  letter-spacing: 0.1em;
+}
+.about-copy .about-lead {
+  font-size: 1.5rem;
+}
+.about-copy > p:not(.about-lead):not(.profile-note),
+.story-lead,
+.story-prose p {
+  font-size: 1.25rem;
+  line-height: 1.7;
+}
+.contact-heading > p {
+  font-size: 1.25rem;
+}
+.card-caption h3,
+.index-project strong {
+  font-size: 1.375rem;
+}
+@media (max-width: 767px) {
+  .site-header {
+    min-height: 76px;
+  }
+  .brand,
+  .footer-top .brand {
+    font-size: 1.25rem;
+  }
+  .cinema-studio-label {
+    font-size: 1.375rem;
+  }
+  .card-caption h3,
+  .index-project strong {
+    font-size: 1.25rem;
+  }
+  .section-heading > p {
+    line-height: 1.65;
   }
 }
