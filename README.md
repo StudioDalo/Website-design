@@ -16,6 +16,7 @@ npm run check
 npm run build
 npm run test:e2e
 npm run test:cms
+npm run test:editor
 ```
 
 `test:cms` uses an isolated synthetic CMS response and a generated test MP4; it never contacts a real dataset. It removes its synthetic delivery output afterward. Rebuild normally before packaging. It requires ffmpeg and Chromium in the test environment. Ordinary setup/builds do not require ffmpeg.

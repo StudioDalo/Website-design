@@ -100,3 +100,5 @@ The owner supplied public project ID `eurg3hlb`, dataset `production`. Login, me
 The enquiry form remains local demo-only. No real delivery or stored enquiry system is configured. Browser tests use desktop Chromium with emulated viewport/preferences, not physical iOS/Android devices or a screen-reader certification.
 
 The final standalone editor build verifies all seven entry assets resolve under `/admin/`, including favicon paths, and allows browser zoom. The owner reports saving the website origin with credentials enabled in Sanity CORS; browser sign-in and publishing are still awaiting the new Netlify upload.
+
+A separate editor browser check loads the real compiled `/admin/` entry, checks local chunks/styles for HTTP errors and verifies the sign-in return address stays `/admin/`. This test mocks the unauthenticated Sanity API boundary; it confirms deployment routing without claiming a real sign-in. No page errors or failed local responses were recorded.

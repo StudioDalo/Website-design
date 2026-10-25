@@ -5,7 +5,8 @@ import { Welcome } from "./welcome";
 import { ProjectPreview } from "./preview";
 import projectConfig from "../sanity-project.json";
 
-const projectId = process.env.SANITY_STUDIO_PROJECT_ID || projectConfig.projectId;
+const projectId =
+  process.env.SANITY_STUDIO_PROJECT_ID || projectConfig.projectId;
 const dataset = process.env.SANITY_STUDIO_DATASET || projectConfig.dataset;
 if (!projectId || !dataset)
   throw new Error(
@@ -16,7 +17,8 @@ export default defineConfig({
   title: "Studio Da'lo",
   projectId,
   dataset,
-  basePath: "/admin",
+  // The standalone CLI supplies /admin as the root; workspace paths are relative.
+  basePath: "/",
   plugins: [
     structureTool({
       structure: (S) =>

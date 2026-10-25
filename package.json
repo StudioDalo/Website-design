@@ -14,7 +14,8 @@
     "build:static": "STUDIO_DALO_STATIC_EXPORT=1 next build",
     "package:static": "python3 scripts/package-static.py",
     "build:netlify": "node scripts/build-netlify.mjs",
-    "test:cms": "node scripts/test-cms.mjs"
+    "test:cms": "node scripts/test-cms.mjs",
+    "test:editor": "node scripts/check-editor.mjs"
   },
   "dependencies": {
     "next": "16.4.3",
