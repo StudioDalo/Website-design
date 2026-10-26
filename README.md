@@ -1,13 +1,11 @@
-# Studio Da’lo — compact navigation and refined motion
+# Studio Da’lo — tighter Approach section
 
-Download studio-dalo-upload.zip, extract it and upload the whole studio-dalo folder in your existing Netlify project’s Deploys tab. Your website address stays https://imaginative-belekoy-450f0d.netlify.app.
+Extract studio-dalo-upload.zip and upload the entire studio-dalo folder in your existing Netlify project’s Deploys tab. Your website address stays https://imaginative-belekoy-450f0d.netlify.app.
 
-This update implements the reviewed Oasis-inspired plan: a centred 760×64px desktop navigation pill, cleaner circular-reveal opening, phase-based image-reel timing, earlier project discovery, compact phone controls, refined project sheets and consistent motion. Supporting text stays at least 16px with 18–20px body copy. Original generated demonstration imagery and the standalone /admin/ editor are retained.
+This focused update reduces excessive vertical spacing in Approach. The desktop section is approximately 28% shorter at 1440px: smaller outer padding, shorter number-to-title gaps and side-by-side capability titles/descriptions at widths of 1024px and above. The existing stacked mobile design is approximately 6% shorter at 390px. Text sizes, content, circular reveal, compact navigation, original generated demonstration imagery, Instagram and standalone /admin/ editor are retained.
 
-The owner-approved Instagram profile @studiodalo_london is linked in the footer and mobile menu, and is editable in Website settings → Identity.
+Validation: TypeScript/ESLint, 16 unit/data tests, the configured static/Studio production build and all 35 website browser journeys. Additional before/after layout measurements cover 320, 390, 768, 1024 and 1440px without page overflow or page errors. Editor assets and unauthenticated sign-in routing pass with the authentication API mocked; actual account authentication is not claimed.
 
-Validation: 16 unit/data tests; 35 website browser journeys in both production modes; three additional isolated CMS/video journeys. Editor asset paths, standalone compilation and unauthenticated sign-in routing are verified. Live owner authentication and automatic publishing remain account-dependent; a publication webhook and a real enquiry provider have not been connected.
+The public Sanity project eurg3hlb / production remains in bootstrap mode pending owner sign-in/import and publishing setup. A real enquiry provider is not connected.
 
-The owner has configured the website origin in Sanity CORS. Project eurg3hlb / dataset production are configured in bootstrap mode, retaining the eight bundled demonstrations while account setup is completed. Sign-in/import, the Netlify Git connection and publication hook still need owner setup.
-
-Source and browser editing instructions: https://github.com/StudioDalo/Website-design/blob/main/EDITOR_SETUP.md
+Source and editing instructions: https://github.com/StudioDalo/Website-design/blob/main/EDITOR_SETUP.md
