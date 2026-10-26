@@ -40,3 +40,11 @@ The prepared Sanity editor is isolated in `studio/`; the public portfolio does n
 ## Typography rebalanced after owner review
 
 The initial universal 20px floor and doubled 24–28px paragraphs overwhelmed the composition. The revised scale uses 16px supporting text and 18–20px prose while retaining display headings, enlarged marks, local fonts, contrast and wrapping. The circular reveal, images, project behavior and standalone Sanity setup are unchanged.
+
+## Oasis-inspired refinement — 26 October 2026
+
+The approved plan is implemented in `app/refinements.css` and the existing components. The navigation is a centred glass pill (760×64px at the standard desktop viewport), the hero opening is simpler, and the route to the gallery is shorter. The circle and original generated imagery remain central. Collection controls use a compact phone layout and cards use deliberate image proportions.
+
+Motion now has a shared easing curve, restrained button feedback, loaded-image-aware reel timing, staged caption arrival and a settled image while reading. Section entrances only translate content; body copy remains visible. The reel pauses offscreen/hidden and honours reduced-motion/data-saving preferences. Project sheets enter and exit smoothly; native modal focus/inertness and browser history remain intact, including focus restoration when returning to a fragment URL.
+
+The owner’s approved Instagram profile, @studiodalo_london, appears in the footer and mobile navigation. It is editable in the standalone Studio. No real account data was modified and no publishing webhook was created. The temporary Netlify deployment still needs the owner to upload the supplied archive until automatic publishing is connected.

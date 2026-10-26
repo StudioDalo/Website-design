@@ -34,13 +34,13 @@ export function useCollectionMotion(
               { transform: "none", opacity: 1 },
             ]
           : [
-              { transform: "translateY(22px) scale(.97)", opacity: 0 },
+              { transform: "translateY(12px) scale(.985)", opacity: 0.65 },
               { transform: "none", opacity: 1 },
             ];
         animations.current.push(
           node.animate(frames, {
-            duration: 570,
-            easing: "cubic-bezier(.2,.8,.2,1)",
+            duration: old ? 480 : 420,
+            easing: "cubic-bezier(.16,1,.3,1)",
           }),
         );
       });

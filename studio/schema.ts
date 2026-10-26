@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { instagramProfile } from "../lib/social";
 const string = (name: string, title: string, description?: string) =>
   defineField({ name, title, type: "string", description });
 const prose = (name: string, title: string) =>
@@ -316,6 +317,22 @@ export const siteSettings = defineType({
         defineField({
           ...string("email", "Public contact email"),
           validation: (r) => r.email(),
+        }),
+        defineField({
+          name: "instagram",
+          title: "Instagram profile",
+          type: "url",
+          description:
+            "The public studio profile. Shown in the footer and mobile menu.",
+          validation: (rule) =>
+            rule.uri({ scheme: ["https"] }).custom((value) => {
+              try {
+                instagramProfile(value || "");
+                return true;
+              } catch {
+                return "Enter your Instagram profile URL, for example https://www.instagram.com/studiodalo_london/.";
+              }
+            }),
         }),
         defineField({
           name: "siteUrl",

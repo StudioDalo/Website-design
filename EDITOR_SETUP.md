@@ -45,6 +45,7 @@ Netlify provides deployment rollback. Sanity offers document history according t
 - **Check before publishing:** use the project's **Content preview** tab. This shows its draft cover and text inside the authenticated editor. It is a content preview, not a full interactive website preview.
 - **Publish:** enable **Approved for the public website**, then Publish. Draft changes stay out of the public build until published. Uncheck approval and Publish, or unpublish the document, to remove it on the next successful deployment.
 - **Reorder:** change the Collection order number. Smaller numbers appear first.
+- **Instagram:** Website settings → Identity → Instagram profile. The approved URL is https://www.instagram.com/studiodalo_london/. It appears in the footer and mobile menu.
 - **Homepage:** Website settings → Homepage for headings, copy and images; About for biography; Approach for steps and capabilities; Identity for the contact email and studio identity.
 - **Hero:** select Image sequence and choose up to six stills, or Short film and upload a compressed MP4/WebM, dimensions and poster. Aim for 6–12 seconds and under 8 MB. Video is muted, pausable and pauses offscreen. Reduced motion/data saving show the poster. The circular reveal is retained.
 - **Fonts:** Appearance offers Manrope, system sans and Georgia for text; Instrument Serif, Georgia and Manrope for emphasis. The Balanced preset uses 16px supporting text and 18–20px body copy. The optional Larger preset increases those sizes by 12.5%. The brand wordmark remains Manrope to preserve its design.

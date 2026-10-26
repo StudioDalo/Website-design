@@ -106,3 +106,13 @@ A separate editor browser check loads the real compiled `/admin/` entry, checks 
 ## Typography correction after owner feedback — 25 October 2026
 
 The earlier universal 20px floor is superseded. The Balanced preset now uses 16px supporting text and 18–20px prose; large headings, enlarged marks and the circular reveal are retained. All 15 unit/data checks and lint/type checks pass. The static production build and all 27 browser journeys pass, including the revised 16px floor, an upper bound of 20px on ordinary prose at default settings, and 200% text enlargement. The editor builds with updated preset descriptions; its isolated sign-in-route check passes (authentication API mocked, not a live account login). Desktop/phone captures record no page/console errors, failed local responses or page overflow.
+
+## Compact header, motion and Instagram refinement — 26 October 2026
+
+All current checks pass: TypeScript/ESLint and 16 unit/data tests; normal production build with 35 browser journeys; configured static/Studio build with the same 35 journeys; three isolated CMS/video journeys; editor asset-path and unauthenticated sign-in-route checks (API mocked). Actual owner sign-in/import and the publishing webhook remain account-dependent, not claimed as verified here.
+
+New browser coverage verifies the 720–780px desktop header target (implemented at 760×64px), shallow navigation/touch targets at 320/390/430px, projects visible promptly after the Work shortcut, dark-section contrast adaptation, stable reel timing during continuous scrolling, the held caption scene, contained project sheets, return focus from fragment URLs, and the approved Instagram links in footer/mobile navigation. Existing 16px supporting-text, 18–20px prose, 200% enlargement, native history, forms, media failures and reduced-motion checks remain in place.
+
+The original generated media, circle reveal and standalone editor are retained. No real enquiry provider or automatic publishing hook has been connected. Desktop/phone captures and viewport simulation complement browser journeys; physical-device, screen-reader and Lighthouse certification are not claimed.
+
+Final capture measurements: the desktop header is 760×64px at 1440×900; the phone header is 366×64px at 390×844. After navigating to Work, the first project starts at approximately 514px on desktop and 590px on phone. Its document position moved from approximately 3592px to 2812px on desktop and from 3137px to 2576px on phone. Final captures record zero page errors, console errors, failed local responses and page overflow at both sizes. The standalone editor’s seven entry assets are verified under `/admin/`.

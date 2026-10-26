@@ -72,8 +72,12 @@ export function Contact({
     "aria-describedby": errors[key] ? `${key}-error` : undefined,
   });
   return (
-    <section id="contact" className="contact-section section-anchor">
-      <div className="contact-heading">
+    <section
+      id="contact"
+      className="contact-section section-anchor"
+      data-nav-tone="dark"
+    >
+      <div className="contact-heading" data-arrival>
         <span className="eyebrow">
           <span className="status-dot" />
           Start a conversation

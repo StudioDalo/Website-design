@@ -6,7 +6,7 @@ Content is separated from layout. You do not need to change components to add a 
 
 Edit `lib/settings.ts` for the public name, designer, descriptive copy, biography, approach and capabilities. The public name is **Studio Da'lo**. Darlington is described as **Architectural Designer**. Do not add ARB-registration claims, unconfirmed qualifications, employers, testimonials or awards.
 
-`brand.email` and `brand.instagram` are empty. `brand.siteUrl` is set to the current Netlify origin. Only the configured email is currently rendered as a link. Social navigation can be added when a genuine destination is approved; no invented social links exist. Set `siteUrl` to the actual HTTPS production origin before social-preview/canonical testing. The current layout includes `robots: { index: false, follow: false }` because it is a demonstration; revisit only after content approval.
+`brand.email` is empty. The owner-approved Instagram URL is `https://www.instagram.com/studiodalo_london/`, shown as @studiodalo_london in the footer and mobile menu. `brand.siteUrl` is the current Netlify origin. Only genuine configured destinations are rendered. Set `siteUrl` to the actual HTTPS production origin before social-preview/canonical testing. The current layout includes `robots: { index: false, follow: false }` because it is a demonstration; revisit only after content approval.
 
 ## Replace the demonstration slots
 
@@ -106,3 +106,13 @@ Visible site text has a 20px minimum at default browser settings. Former 12px la
 ## Balanced typography correction — 25 October 2026
 
 The owner found the doubled typography too large. This supersedes the earlier 20px minimum. Supporting labels and captions now have a 16px minimum; prose is 18–20px. Navigation is 18px, project titles are 20–22px, and display headings retain their hierarchy. The header mark stays enlarged (46px desktop/42px phone); STUDIO above the hero is 24px desktop/22px phone. The Balanced editor preset uses these defaults; Larger increases the rem baseline by 12.5%. Regression checks enforce both the 16px floor and the 18–20px prose range, so accessibility fixes do not inadvertently enlarge all the copy again.
+
+## Compact navigation and motion refinement — 26 October 2026
+
+`app/refinements.css`, imported after the original global stylesheet, contains the reviewed refinement pass. The centred desktop header is 760×64px at default text settings. It retains the enlarged mark, has a mobile Contact link, and adapts its contrast to the hero, image interlude and contact section. Its measured height updates anchor offsets, including after text enlargement.
+
+The circular reveal remains. Opening copy from `home.heroIntro`, `home.heroIntroEmphasis` and `home.heroEyebrow` now appears in the compact introduction below it, keeping the first screen focused on the wordmark. The image reel uses a 3.6-second early dwell and a 5.2-second opening dwell, selects loaded images, and holds when the caption arrives. Scrolling within a phase no longer restarts its timer. Hero image/video choices remain editable through the existing settings.
+
+Collection captions keep 16px supporting text and 18–20px prose. The image-led wall uses deliberate cover ratios and two columns on wider phones (420px and above), one on smaller phones. Uncropped enlargement remains available. Project sheets have a contained desktop layout and a rounded phone layout, with keyboard focus restored on close.
+
+In Sanity, Website settings → Identity → Instagram profile controls the social link. Enter the HTTPS profile URL; the public boundary validates and normalises it. Existing CMS documents that explicitly contain an empty Instagram field must be updated there if you want the link shown when CMS publishing is enabled. Publishing and enquiry-provider connections remain separate account setup tasks.

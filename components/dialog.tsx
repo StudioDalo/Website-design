@@ -7,17 +7,22 @@ export function Dialog({
   onClose,
   className = "",
   closeLabel = "Close project",
+  restoreFocusTo,
 }: {
   children: ReactNode;
   titleId: string;
   onClose: () => void;
   className?: string;
   closeLabel?: string;
+  restoreFocusTo?: HTMLElement | null;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
+  const closingAnimation = useRef<Animation | null>(null);
+  const closing = useRef(false);
   useEffect(() => {
     const dialog = ref.current;
-    const previous = document.activeElement as HTMLElement | null;
+    const previous =
+      restoreFocusTo || (document.activeElement as HTMLElement | null);
     const overflow = document.body.style.overflow;
     dialog?.showModal();
     // Native modal inertness is reinforced explicitly for assistive tooling.
@@ -45,12 +50,47 @@ export function Dialog({
     }
     document.body.style.overflow = "hidden";
     return () => {
+      closingAnimation.current?.cancel();
       dialog?.close();
       for (const element of inerted) element.inert = false;
       document.body.style.overflow = overflow;
       if (previous?.isConnected) previous.focus({ preventScroll: true });
     };
-  }, []);
+  }, [restoreFocusTo]);
+  function requestClose() {
+    if (closing.current) return;
+    const dialog = ref.current;
+    const surface = dialog?.querySelector<HTMLElement>(".dialog-surface");
+    if (
+      !surface ||
+      typeof surface.animate !== "function" ||
+      matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
+      onClose();
+      return;
+    }
+    closing.current = true;
+    dialog!.dataset.closing = "true";
+    const phone = matchMedia("(max-width: 767px)").matches;
+    const animation = surface.animate(
+      [
+        { opacity: 1, transform: "none" },
+        {
+          opacity: 0,
+          transform: `translateY(${phone ? 28 : 14}px) scale(${phone ? 1 : 0.99})`,
+        },
+      ],
+      { duration: 180, easing: "cubic-bezier(.4,0,1,1)", fill: "forwards" },
+    );
+    closingAnimation.current = animation;
+    animation.finished
+      .then(() => {
+        if (dialog?.isConnected) onClose();
+      })
+      .catch(() => {
+        /* Navigation can unmount a closing sheet. */
+      });
+  }
   function trapFocus(event: KeyboardEvent<HTMLDialogElement>) {
     if (event.key !== "Tab") return;
     const dialogs = document.querySelectorAll("dialog[open]");
@@ -88,17 +128,17 @@ export function Dialog({
       onCancel={(e) => {
         e.preventDefault();
         e.stopPropagation();
-        onClose();
+        requestClose();
       }}
       onClick={(e) => {
-        if (e.target === e.currentTarget) onClose();
+        if (e.target === e.currentTarget) requestClose();
       }}
     >
       <div className="dialog-surface">
         <button
           className="icon-button dialog-close"
           aria-label={closeLabel}
-          onClick={onClose}
+          onClick={requestClose}
         >
           <Icon name="close" />
         </button>

@@ -5,6 +5,7 @@ import { Footer } from "@/components/footer";
 import { getContent } from "@/lib/content";
 import { SiteProvider } from "@/components/site-provider";
 import "./globals.css";
+import "./refinements.css";
 const sans = localFont({
   src: "../assets/fonts/Manrope.woff2",
   variable: "--font-dalo-sans",

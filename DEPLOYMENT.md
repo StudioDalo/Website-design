@@ -4,13 +4,13 @@ The owner authorised temporary public deployment on 24 October 2026. The existin
 
 ## Update the existing website in a browser
 
-1. [Download the tested website ZIP](https://github.com/StudioDalo/Website-design/raw/d11a937d050790173eb45e46cc11ab3f528cb133/studio-dalo-upload.zip).
+1. [Download the tested website ZIP](https://github.com/StudioDalo/Website-design/raw/808fd2c6dc47d8364b47496386864189a238d545/studio-dalo-upload.zip).
 2. On Windows, right-click the ZIP and choose **Extract All**. Inside is a folder named **studio-dalo**.
 3. Open your existing Netlify project **imaginative-belekoy-450f0d**, then **Deploys**.
 4. Upload the entire new **studio-dalo** folder in the manual deployment area. Wait until Netlify reports success.
 5. Open the same website address above. The current version changes only after the upload succeeds.
 
-This package includes readable text, larger branding, the circular reveal, eight labelled generated studies and a standalone editor at **/admin/**. Sanity project identifiers are configured for **eurg3hlb / production**. Complete the Sanity CORS/login steps, then import the current collection through Getting started in the editor. The public portfolio retains its bundled collection during this setup.
+This package includes the compact floating header, refined circular reveal and reel, earlier project browsing, readable typography, @studiodalo_london links, eight labelled generated studies and a standalone editor at **/admin/**. Sanity project identifiers are configured for **eurg3hlb / production**. Complete the Sanity CORS/login steps, then import the current collection through Getting started in the editor. The public portfolio retains its bundled collection during this setup.
 
 The ZIP download has been fetched via HTTPS, checked byte-for-byte against the local build and verified as a valid archive. Workspace file links do not work as downloads in the owner’s ChatGPT browser.
 

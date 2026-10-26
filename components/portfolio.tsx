@@ -18,6 +18,7 @@ import { Contact } from "./contact";
 import { CinematicHero } from "./cinematic-hero";
 import { useQuietMotion } from "./motion-preference";
 import { useCollectionMotion } from "./collection-motion";
+import { useSectionArrivals } from "./section-arrivals";
 function subscribeView(callback: () => void) {
   window.addEventListener("storage", callback);
   window.addEventListener("dalo-view", callback);
@@ -55,6 +56,7 @@ export function Portfolio({
   const aboutImage = home.aboutImage ?? projects[3]?.hero ?? projects[0]?.hero;
   const collection = useRef<HTMLDivElement>(null);
   const quiet = useQuietMotion();
+  useSectionArrivals();
   const [discipline, setDiscipline] = useState("All");
   const [query, setQuery] = useState("");
   const view = useSyncExternalStore(
@@ -68,6 +70,7 @@ export function Portfolio({
   const actualView = temporaryView || view;
   const [motion, setMotion] = useState(false);
   const [selected, setSelected] = useState<Project | null>(null);
+  const [opener, setOpener] = useState<HTMLElement | null>(null);
   const urlReference = useSyncExternalStore(
     subscribeLocation,
     getProjectReference,
@@ -99,11 +102,16 @@ export function Portfolio({
             .getElementById("contact-title")
             ?.focus({ preventScroll: true });
         });
+      } else if (!project && opener?.isConnected) {
+        // Fragment history restoration can reset focus after dialog cleanup.
+        requestAnimationFrame(() => {
+          if (opener.isConnected) opener.focus({ preventScroll: true });
+        });
       }
     };
     window.addEventListener("popstate", onPop);
     return () => window.removeEventListener("popstate", onPop);
-  }, [projects]);
+  }, [projects, opener]);
   useEffect(() => {
     document.title = selected
       ? `${selected.title} — ${brand.name}`
@@ -133,6 +141,7 @@ export function Portfolio({
     )
       return;
     event.preventDefault();
+    setOpener(event.currentTarget);
     window.history.pushState(
       { ...window.history.state, daloProject: project.slug },
       "",
@@ -164,8 +173,10 @@ export function Portfolio({
           <em>{home.introEmphasis}</em>
         </p>
         <div>
-          <span>{brand.description}</span>
-          <span>A portfolio taking shape.</span>
+          <span>
+            {home.heroIntro} <em>{home.heroIntroEmphasis}</em>
+          </span>
+          <span>{home.heroEyebrow}</span>
         </div>
       </section>
       <section
@@ -173,7 +184,7 @@ export function Portfolio({
         className="work-section section-anchor"
         aria-labelledby="work-title"
       >
-        <div className="section-heading">
+        <div className="section-heading" data-arrival>
           <div>
             <span className="eyebrow section-index">01 / The collection</span>
             <h2 id="work-title">
@@ -189,99 +200,100 @@ export function Portfolio({
           <div className="demo-banner">
             <span className="status-dot" />
             <p>
-              Portfolio in progress. These are labelled demonstration slots,
-              ready for Darlington’s approved work.
+              AI-generated demonstration studies · Not completed commissions.
             </p>
             <a href="#about">
               Meet the studio <Icon />
             </a>
           </div>
         )}
-        <div className="work-toolbar">
-          <div
-            className="filters"
-            role="group"
-            aria-label="Filter by discipline"
-          >
-            {["All", ...disciplines(projects)].map((category) => (
-              <button
-                key={category}
-                className={discipline === category ? "active" : ""}
-                aria-pressed={discipline === category}
-                onClick={() => {
-                  captureCollection();
-                  setDiscipline(category);
-                }}
-              >
-                {category}
-                <sup>
-                  {(category === "All"
-                    ? projects.length
-                    : projects.filter((p) => p.discipline === category).length
-                  )
-                    .toString()
-                    .padStart(2, "0")}
-                </sup>
-              </button>
-            ))}
-          </div>
-          <label className="search">
-            <Icon name="search" />
-            <span className="sr-only">Search projects</span>
-            <input
-              type="search"
-              placeholder="Search projects"
-              value={query}
-              onChange={(e) => {
-                captureCollection();
-                setQuery(e.target.value);
-              }}
-              maxLength={120}
-            />
-          </label>
-        </div>
-        <div className="work-controls">
-          <span className="result-count" role="status" aria-live="polite">
-            {results.length.toString().padStart(2, "0")}{" "}
-            {results.length === 1 ? "project" : "projects"}
-            {(query || discipline !== "All") && (
-              <button className="reset-inline" onClick={reset}>
-                Reset <Icon name="close" />
-              </button>
-            )}
-          </span>
-          <div className="view-controls">
-            <label className="motion-control">
-              <input
-                type="checkbox"
-                checked={motion}
-                onChange={(e) => setMotion(e.target.checked)}
-              />
-              <span className="switch" />
-              <span>Motion previews</span>
-              <small>Still-image movement</small>
-            </label>
+        <div className="collection-tools">
+          <div className="work-toolbar">
             <div
-              className="view-switch"
+              className="filters"
               role="group"
-              aria-label="Collection view"
+              aria-label="Filter by discipline"
             >
-              <button
-                aria-label="Wall view"
-                aria-pressed={actualView === "wall"}
-                onClick={() => setView("wall")}
+              {["All", ...disciplines(projects)].map((category) => (
+                <button
+                  key={category}
+                  className={discipline === category ? "active" : ""}
+                  aria-pressed={discipline === category}
+                  onClick={() => {
+                    captureCollection();
+                    setDiscipline(category);
+                  }}
+                >
+                  {category}
+                  <sup>
+                    {(category === "All"
+                      ? projects.length
+                      : projects.filter((p) => p.discipline === category).length
+                    )
+                      .toString()
+                      .padStart(2, "0")}
+                  </sup>
+                </button>
+              ))}
+            </div>
+            <label className="search">
+              <Icon name="search" />
+              <span className="sr-only">Search projects</span>
+              <input
+                type="search"
+                placeholder="Search projects"
+                value={query}
+                onChange={(e) => {
+                  captureCollection();
+                  setQuery(e.target.value);
+                }}
+                maxLength={120}
+              />
+            </label>
+          </div>
+          <div className="work-controls">
+            <span className="result-count" role="status" aria-live="polite">
+              {results.length.toString().padStart(2, "0")}{" "}
+              {results.length === 1 ? "project" : "projects"}
+              {(query || discipline !== "All") && (
+                <button className="reset-inline" onClick={reset}>
+                  Reset <Icon name="close" />
+                </button>
+              )}
+            </span>
+            <div className="view-controls">
+              <label className="motion-control">
+                <input
+                  type="checkbox"
+                  checked={motion}
+                  onChange={(e) => setMotion(e.target.checked)}
+                />
+                <span className="switch" />
+                <span>Motion previews</span>
+                <small>Still-image movement</small>
+              </label>
+              <div
+                className="view-switch"
+                role="group"
+                aria-label="Collection view"
               >
-                <Icon name="wall" />
-                <span>Wall</span>
-              </button>
-              <button
-                aria-label="Index view"
-                aria-pressed={actualView === "index"}
-                onClick={() => setView("index")}
-              >
-                <Icon name="index" />
-                <span>Index</span>
-              </button>
+                <button
+                  aria-label="Wall view"
+                  aria-pressed={actualView === "wall"}
+                  onClick={() => setView("wall")}
+                >
+                  <Icon name="wall" />
+                  <span>Wall</span>
+                </button>
+                <button
+                  aria-label="Index view"
+                  aria-pressed={actualView === "index"}
+                  onClick={() => setView("index")}
+                >
+                  <Icon name="index" />
+                  <span>Index</span>
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -309,7 +321,7 @@ export function Portfolio({
                     <Media
                       media={p.hero}
                       motion={motion && !selected}
-                      sizes="(max-width: 359px) 90vw, (max-width: 1024px) 44vw, (max-width: 1399px) 30vw, 22vw"
+                      sizes="(max-width: 419px) 90vw, (max-width: 1024px) 44vw, (max-width: 1399px) 30vw, 22vw"
                     />
                     <span className="card-number">
                       {p.featuredOrder.toString().padStart(2, "0")}
@@ -409,6 +421,7 @@ export function Portfolio({
       {interlude && (
         <section
           className="material-interlude"
+          data-nav-tone="dark"
           aria-label="A study in light and material"
         >
           <Media media={interlude} sizes="100vw" />
@@ -448,7 +461,7 @@ export function Portfolio({
           </div>
           <Mark className="about-mark" />
         </div>
-        <div className="about-copy">
+        <div className="about-copy" data-arrival>
           <span className="eyebrow section-index">02 / A point of view</span>
           <h2 id="about-title">
             {home.aboutTitle}
@@ -472,7 +485,7 @@ export function Portfolio({
         className="approach-section section-anchor"
         aria-labelledby="approach-title"
       >
-        <div className="section-heading">
+        <div className="section-heading" data-arrival>
           <div>
             <span className="eyebrow section-index">
               03 / The way of working
@@ -487,7 +500,7 @@ export function Portfolio({
         </div>
         <div className="approach-grid">
           {approach.map((item) => (
-            <article key={item.number}>
+            <article key={item.number} data-arrival>
               <span className="approach-number">{item.number}</span>
               <h3>{item.title}</h3>
               <p>{item.body}</p>
@@ -515,6 +528,7 @@ export function Portfolio({
           titleId="project-title"
           onClose={() => history.back()}
           className="project-dialog"
+          restoreFocusTo={opener}
         >
           <div ref={dialogContent}>
             <ProjectStory

@@ -1,6 +1,6 @@
 # Studio Da’lo
 
-A Next.js architectural portfolio with a circular scroll reveal, readable typography, original generated demonstration imagery and a prepared Sanity editing dashboard. The live domain remains https://imaginative-belekoy-450f0d.netlify.app. This checkout does not have access to the owner’s Netlify/Sanity accounts.
+A Next.js architectural portfolio with a compact floating header, circular scroll reveal, readable typography, original generated demonstration imagery and a prepared standalone Sanity editor. The approved Instagram profile is @studiodalo_london. The live domain remains https://imaginative-belekoy-450f0d.netlify.app. This checkout does not have access to the owner’s Netlify/Sanity accounts.
 
 ## Run and check
 
@@ -49,3 +49,7 @@ Public project identifiers for `eurg3hlb` / `production` are saved in `sanity-pr
 - [REFERENCE_REVIEW.md](REFERENCE_REVIEW.md): source-informed Oasis review, without copied code/media.
 
 The enquiry form is an honest local-only demonstration. A real contact email can be configured for a mail link. Provider-backed delivery requires a separate connection; it must not report “sent” while running in demo mode.
+
+## Current refinement
+
+`app/refinements.css` contains the compact navigation and refined collection/sheet layouts. `components/header.tsx` measures its height for anchor offsets and tracks section contrast. The hero uses loaded-image-aware, phase-based reel timing; collection movement and progressive section entrances respect reduced motion. The project dialog restores focus after closing to a fragment URL. The current suite contains 16 unit/data tests, 35 website browser journeys and three isolated CMS/video journeys, plus an editor deployment-route check.

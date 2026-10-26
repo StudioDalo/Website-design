@@ -6,7 +6,7 @@ export const brand = {
   description: "Architecture, interiors and design by Darlington.",
   // Add genuine, approved destinations only. Empty values render no links.
   email: "",
-  instagram: "",
+  instagram: "https://www.instagram.com/studiodalo_london/",
   siteUrl: "https://imaginative-belekoy-450f0d.netlify.app",
 };
 export const profile = {

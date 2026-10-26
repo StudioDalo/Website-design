@@ -1,5 +1,6 @@
 import type { Project, Media } from "./types";
 import { defaultSettings, type SiteSettings } from "./site-settings";
+import { instagramProfile } from "./social";
 
 type RecordValue = Record<string, unknown>;
 // Unique for this build process: prevent a host's restored fetch cache from
@@ -150,6 +151,7 @@ export function settingsFromCms(value: unknown): SiteSettings {
       throw new Error("The website origin must use HTTPS.");
     result.brand.siteUrl = origin.origin;
   }
+  result.brand.instagram = instagramProfile(result.brand.instagram)?.url || "";
   for (const key of ["approach", "capabilities"] as const) {
     const values = s[key];
     if (Array.isArray(values)) {

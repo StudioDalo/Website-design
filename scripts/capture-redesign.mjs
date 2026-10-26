@@ -2,6 +2,7 @@ import { chromium } from "@playwright/test";
 import { spawn } from "node:child_process";
 import fs from "node:fs/promises";
 const base = "http://127.0.0.1:3130";
+const prefix = process.env.STUDIO_DALO_CAPTURE_PREFIX || "redesign";
 const server = spawn("python3", ["scripts/serve-static.py", "--port", "3130"]);
 let browser;
 const observations = {
@@ -46,7 +47,8 @@ try {
     await page
       .getByRole("button", { name: "Pause image reel", exact: true })
       .click();
-    await page.screenshot({ path: `artifacts/redesign-${name}-opening.png` });
+    const header = await page.locator(".site-header").boundingBox();
+    await page.screenshot({ path: `artifacts/${prefix}-${name}-opening.png` });
     for (const [phase, progress] of [
       ["transition", 0.35],
       ["reveal", 0.85],
@@ -61,25 +63,30 @@ try {
       }, progress);
       await page.waitForTimeout(500);
       await page.screenshot({
-        path: `artifacts/redesign-${name}-${phase}.png`,
+        path: `artifacts/${prefix}-${name}-${phase}.png`,
       });
     }
     await page.evaluate(() =>
       window.scrollTo({
-        top: document.getElementById("work").offsetTop - 105,
+        top: document.getElementById("work").offsetTop - (parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--header-offset")) || 100),
         behavior: "instant",
       }),
     );
     await page.waitForTimeout(500);
-    await page.screenshot({ path: `artifacts/redesign-${name}-work.png` });
+    await page.screenshot({ path: `artifacts/${prefix}-${name}-work.png` });
+    const collection = await page.evaluate(() => {
+      const hero = document.querySelector(".cinema-hero");
+      const first = document.querySelector(".project-card").getBoundingClientRect();
+      return { firstProjectViewportY: first.y, firstProjectDocumentY: first.y + scrollY, heroHeight: hero.offsetHeight };
+    });
     await page.locator(".project-card").first().click();
     await page.getByRole("dialog").waitFor();
     await page.waitForTimeout(550);
-    await page.screenshot({ path: `artifacts/redesign-${name}-project.png` });
+    await page.screenshot({ path: `artifacts/${prefix}-${name}-project.png` });
     await page.getByRole("button", { name: /^Enlarge drawing/ }).click();
     await page.locator(".zoom-dialog").waitFor();
     await page.waitForTimeout(550);
-    await page.screenshot({ path: `artifacts/redesign-${name}-drawing.png` });
+    await page.screenshot({ path: `artifacts/${prefix}-${name}-drawing.png` });
     await page
       .getByRole("button", { name: "Close enlarged media", exact: true })
       .click();
@@ -89,20 +96,22 @@ try {
     await page.getByRole("dialog").waitFor({ state: "detached" });
     await page.locator("#about").scrollIntoViewIfNeeded();
     await page.waitForTimeout(100);
-    await page.screenshot({ path: `artifacts/redesign-${name}-about.png` });
+    await page.screenshot({ path: `artifacts/${prefix}-${name}-about.png` });
     await page.locator("#contact-title").scrollIntoViewIfNeeded();
     await page.waitForTimeout(100);
-    await page.screenshot({ path: `artifacts/redesign-${name}-contact.png` });
+    await page.screenshot({ path: `artifacts/${prefix}-${name}-contact.png` });
     observations.layouts.push({
       width,
       height,
+      header,
+      collection,
       overflow: await page.evaluate(
         () => document.documentElement.scrollWidth > innerWidth,
       ),
     });
   }
   await fs.writeFile(
-    "artifacts/redesign-observations.json",
+    `artifacts/${prefix}-observations.json`,
     JSON.stringify(observations, null, 2) + "\n",
   );
   console.log(JSON.stringify(observations, null, 2));

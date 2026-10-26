@@ -40,3 +40,9 @@ The owner has deployed Studio Dalo at https://imaginative-belekoy-450f0d.netlify
 The previous list of missing cinematic behavior is superseded by the new local implementation: an image-filled Da'lo wordmark opens through a native-scroll aperture into a full scene; the controlled still reel pauses appropriately; collection filtering/view changes reflow with animation; and project stories use a media/details split on desktop with imagery first on phones. The navigation, type, collection spacing, imagery and remaining sections were redesigned together. See REDESIGN_NOTES.md and the current QA_REPORT.md.
 
 This remains an original, source-informed interpretation. No Oasis branding, proprietary fonts, media or source code is part of the application. A rendered reference comparison remains unverified because of the certificate-trust issue described above. Studio Da'lo itself is rendered, visually reviewed and tested at the documented viewports.
+
+## Rendered review and implementation — 26 October 2026
+
+The reference opening and collection were rendered at 1440×900 and 390×844 through a controlled reader: original same-origin public assets were fetched with Python’s standard HTTPS certificate verification and used to fulfil browser requests. This avoids the browser-specific trust problem without disabling TLS verification. No third-party branding, fonts, media or source is included in Studio Da’lo. Reference film playback and form submission were not tested.
+
+The rendered Oasis pill measured 704×51.7px on desktop; Studio Da’lo’s prior build measured 1240×80px. The new desktop target is implemented as a 760×64px pill, alongside staged hero motion, a more compact collection introduction, adaptive header contrast, consistent control feedback and contained project sheets. The signature circular reveal is retained as an original interpretation.

@@ -1,4 +1,5 @@
 import { test } from "node:test";
+import { instagramProfile } from "../lib/social";
 import assert from "node:assert/strict";
 import {
   mediaFromCms,
@@ -143,4 +144,23 @@ test("CMS uses published perspective and keeps the read token in the server requ
   assert.ok(requested);
   assert.equal(result?.projects.length, 1);
   assert.ok(!JSON.stringify(result).includes("unit-test-secret"));
+});
+
+test("Instagram links accept the owner's profile and reject executable or unrelated destinations", () => {
+  assert.deepEqual(
+    instagramProfile("https://www.instagram.com/studiodalo_london/#"),
+    {
+      url: "https://www.instagram.com/studiodalo_london/",
+      handle: "@studiodalo_london",
+    },
+  );
+  assert.equal(instagramProfile(""), null);
+  for (const url of [
+    "javascript:alert(1)",
+    "https://example.org/studiodalo_london/",
+    "https://www.instagram.com.evil.org/studiodalo_london/",
+    "https://www.instagram.com/direct/inbox/",
+  ]) {
+    assert.throws(() => settingsFromCms({ brand: { instagram: url } }));
+  }
 });

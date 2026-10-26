@@ -19,6 +19,7 @@ export function CinematicHero({ projects }: { projects: Project[] }) {
   const [paused, setPaused] = useState(false);
   const [scene, setScene] = useState(0);
   const [loadedCount, setLoadedCount] = useState(1);
+  const ready = useRef(new Set<string>());
   const maskId = useId().replaceAll(":", "");
   const selected = [projects[0], projects[1], projects[5]].filter(Boolean);
   const fallback: MediaType = {
@@ -39,6 +40,7 @@ export function CinematicHero({ projects }: { projects: Project[] }) {
   const videoMode = hero.mode === "video" && !!hero.video;
   const scenes = videoMode ? [hero.video!] : stills;
   const activeMedia = scenes[scene % scenes.length];
+  const sceneSignature = JSON.stringify(scenes.map((media) => media.src));
 
   useEffect(() => {
     const section = root.current;
@@ -47,27 +49,44 @@ export function CinematicHero({ projects }: { projects: Project[] }) {
     let timer: ReturnType<typeof setTimeout> | undefined;
     let visible = true;
     let progress = 0;
+    let scheduledPace = "";
+    const sources: string[] = JSON.parse(sceneSignature);
     section.dataset.enhanced = "true";
     section.dataset.static = String(quiet);
 
     const schedule = () => {
-      clearTimeout(timer);
-      if (
-        !videoMode &&
-        scenes.length > 1 &&
-        !paused &&
-        !quiet &&
-        visible &&
-        !document.hidden &&
-        progress < 0.58
-      ) {
-        timer = setTimeout(() => {
-          setScene((index) => (index + 1) % scenes.length);
-          schedule();
-        }, 5200);
+      const playing =
+        !paused && !quiet && visible && !document.hidden && progress < 0.68;
+      const pace = progress < 0.24 ? "letters" : "opening";
+      section.dataset.playing = String(playing);
+      section.dataset.reelPace = playing ? pace : "held";
+      section.style.setProperty(
+        "--reel-fade",
+        pace === "letters" ? "550ms" : "900ms",
+      );
+      if (!playing || videoMode || sources.length < 2) {
+        clearTimeout(timer);
+        timer = undefined;
+        scheduledPace = "";
+        return;
       }
-      section.dataset.playing = String(
-        !paused && !quiet && visible && !document.hidden && progress < 0.58,
+      // Scrolling within a phase must not continually restart the dwell timer.
+      if (timer && scheduledPace === pace) return;
+      clearTimeout(timer);
+      scheduledPace = pace;
+      timer = setTimeout(
+        () => {
+          timer = undefined;
+          setScene((index) => {
+            for (let step = 1; step < sources.length; step++) {
+              const next = (index + step) % sources.length;
+              if (ready.current.has(sources[next])) return next;
+            }
+            return index;
+          });
+          schedule();
+        },
+        pace === "letters" ? 3600 : 5200,
       );
     };
     const render = () => {
@@ -93,7 +112,7 @@ export function CinematicHero({ projects }: { projects: Project[] }) {
       section.style.setProperty("--hero-progress", String(progress));
       section.style.setProperty(
         "--hero-caption",
-        String(ease(clamp((progress - 0.54) / 0.22))),
+        String(ease(clamp((progress - 0.72) / 0.11))),
       );
       section.style.setProperty(
         "--hero-intro",
@@ -101,12 +120,20 @@ export function CinematicHero({ projects }: { projects: Project[] }) {
       );
       section.dataset.phase =
         progress < 0.08 ? "wordmark" : progress < 0.72 ? "opening" : "scene";
-      document.documentElement.dataset.heroTone =
-        rect.bottom > stage.offsetHeight * 0.2 &&
-        rect.top < 50 &&
-        progress > 0.33
+      const header = document
+        .querySelector(".site-header")
+        ?.getBoundingClientRect();
+      const probe = header ? header.top + header.height / 2 : 44;
+      const underHeader = rect.top <= probe && rect.bottom > probe;
+      const tone =
+        underHeader && radius > Math.abs(stage.clientHeight / 2 - probe)
           ? "dark"
           : "light";
+      document.documentElement.dataset.heroTone = tone;
+      if (section.dataset.navTone !== tone) {
+        section.dataset.navTone = tone;
+        window.dispatchEvent(new Event("dalo-hero-tone"));
+      }
       schedule();
     };
     const request = () => {
@@ -133,7 +160,7 @@ export function CinematicHero({ projects }: { projects: Project[] }) {
       document.removeEventListener("visibilitychange", schedule);
       delete document.documentElement.dataset.heroTone;
     };
-  }, [paused, quiet, scenes.length, videoMode]);
+  }, [paused, quiet, sceneSignature, videoMode]);
 
   return (
     <section
@@ -161,6 +188,7 @@ export function CinematicHero({ projects }: { projects: Project[] }) {
                   priority={index === 0}
                   sizes="100vw"
                   onReady={() => {
+                    ready.current.add(media.src);
                     if (!quiet)
                       setLoadedCount((count) =>
                         Math.max(count, Math.min(scenes.length, index + 2)),
@@ -214,14 +242,6 @@ export function CinematicHero({ projects }: { projects: Project[] }) {
             />
           </svg>
         </h1>
-        <div className="cinema-identity">
-          <span className="eyebrow">{home.heroEyebrow}</span>
-          <p>
-            {home.heroIntro}
-            <br />
-            <em>{home.heroIntroEmphasis}</em>
-          </p>
-        </div>
         <div className="cinema-byline">
           <span>Architecture.</span>
           <span>Interiors.</span>
@@ -240,8 +260,6 @@ export function CinematicHero({ projects }: { projects: Project[] }) {
         </div>
         <div className="cinema-bottom">
           <div className="cinema-count">
-            <span className="status-dot" />
-            {projects.length.toString().padStart(2, "0")} studies
             <span className="cinema-scroll-hint">
               Scroll to look inside <span />
             </span>
@@ -253,46 +271,48 @@ export function CinematicHero({ projects }: { projects: Project[] }) {
             </span>
           </a>
         </div>
-        <div className="reel-controls">
-          <span>
-            {videoMode
-              ? "Short film"
-              : `Visual study ${String((scene % scenes.length) + 1).padStart(2, "0")} / ${String(scenes.length).padStart(2, "0")}`}
+        <div className="cinema-utility">
+          <span className="cinema-disclosure">
+            {activeMedia.credit.includes("AI-generated")
+              ? "AI-generated demonstration imagery · Not a completed project"
+              : activeMedia.caption || activeMedia.credit}
           </span>
-          {!quiet && (
-            <button
-              type="button"
-              onClick={() => setPaused((value) => !value)}
-              aria-label={
-                videoMode
-                  ? paused
-                    ? "Play hero video"
-                    : "Pause hero video"
-                  : paused
-                    ? "Play image reel"
-                    : "Pause image reel"
-              }
-              aria-pressed={paused}
-            >
-              {paused ? "Play" : "Pause"}{" "}
-              <span aria-hidden="true">{paused ? "▷" : "Ⅱ"}</span>
-            </button>
-          )}
-          {!videoMode && scenes.length > 1 && (
-            <button
-              type="button"
-              aria-label="Next hero image"
-              onClick={() => setScene((index) => (index + 1) % scenes.length)}
-            >
-              <Icon name="right" />
-            </button>
-          )}
+          <div className="reel-controls">
+            <span>
+              {videoMode
+                ? "Short film"
+                : `Visual study ${String((scene % scenes.length) + 1).padStart(2, "0")} / ${String(scenes.length).padStart(2, "0")}`}
+            </span>
+            {!quiet && (
+              <button
+                type="button"
+                onClick={() => setPaused((value) => !value)}
+                aria-label={
+                  videoMode
+                    ? paused
+                      ? "Play hero video"
+                      : "Pause hero video"
+                    : paused
+                      ? "Play image reel"
+                      : "Pause image reel"
+                }
+                aria-pressed={paused}
+              >
+                {paused ? "Play" : "Pause"}{" "}
+                <span aria-hidden="true">{paused ? "▷" : "Ⅱ"}</span>
+              </button>
+            )}
+            {!videoMode && scenes.length > 1 && (
+              <button
+                type="button"
+                aria-label="Next hero image"
+                onClick={() => setScene((index) => (index + 1) % scenes.length)}
+              >
+                <Icon name="right" />
+              </button>
+            )}
+          </div>
         </div>
-        <span className="cinema-disclosure">
-          {activeMedia.credit.includes("AI-generated")
-            ? "AI-generated demonstration imagery · Not a completed project"
-            : activeMedia.caption || activeMedia.credit}
-        </span>
       </div>
     </section>
   );
