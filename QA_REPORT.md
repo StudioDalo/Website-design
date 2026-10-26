@@ -116,3 +116,11 @@ New browser coverage verifies the 720–780px desktop header target (implemented
 The original generated media, circle reveal and standalone editor are retained. No real enquiry provider or automatic publishing hook has been connected. Desktop/phone captures and viewport simulation complement browser journeys; physical-device, screen-reader and Lighthouse certification are not claimed.
 
 Final capture measurements: the desktop header is 760×64px at 1440×900; the phone header is 366×64px at 390×844. After navigating to Work, the first project starts at approximately 514px on desktop and 590px on phone. Its document position moved from approximately 3592px to 2812px on desktop and from 3137px to 2576px on phone. Final captures record zero page errors, console errors, failed local responses and page overflow at both sizes. The standalone editor’s seven entry assets are verified under `/admin/`.
+
+## Approach spacing — 26 October 2026
+
+A focused spacing plan was shared before implementation. At 1440px, the Approach section changes from 1355px to 972px tall (28% shorter); at 390px it changes from 1627px to 1530px (6% shorter). Desktop capability titles and descriptions now sit beside each other from 1024px upward; smaller screens retain the stacked layout. Fonts and content are unchanged, with natural wrapping and no fixed content heights.
+
+TypeScript, ESLint and all 16 unit/data tests pass. The configured static/standalone Studio production build passes, as do all 35 static browser journeys, including the existing 16px minimum and 200% text-enlargement checks. The editor's local assets and unauthenticated sign-in routing pass with the authentication API mocked. Before/after Approach measurements at 320, 390, 768, 1024 and 1440px show no page errors or horizontal overflow. Desktop and mobile section captures were visually reviewed. Evidence is recorded in `artifacts/approach-*.log`, `artifacts/approach-*-observations.json` and the corresponding PNGs.
+
+This CSS-only refinement does not repeat the earlier normal-server or isolated CMS/video runs, whose results above describe the previous revision. Actual Netlify upload and owner account authentication remain external steps.

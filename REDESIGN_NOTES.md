@@ -48,3 +48,8 @@ The approved plan is implemented in `app/refinements.css` and the existing compo
 Motion now has a shared easing curve, restrained button feedback, loaded-image-aware reel timing, staged caption arrival and a settled image while reading. Section entrances only translate content; body copy remains visible. The reel pauses offscreen/hidden and honours reduced-motion/data-saving preferences. Project sheets enter and exit smoothly; native modal focus/inertness and browser history remain intact, including focus restoration when returning to a fragment URL.
 
 The owner’s approved Instagram profile, @studiodalo_london, appears in the footer and mobile navigation. It is editable in the standalone Studio. No real account data was modified and no publishing webhook was created. The temporary Netlify deployment still needs the owner to upload the supplied archive until automatic publishing is connected.
+## Approach spacing refinement — 26 October 2026
+
+Following the owner’s request, a focused plan was shared before implementation. Desktop section padding is now 56px per edge, the process starts 32px below its heading, number-to-title gaps are 24px and capabilities follow after 48px. At widths of at least 1024px, capability titles and descriptions share a row. These are flexible columns rather than fixed-height blocks, so longer CMS text can wrap.
+
+Mobile keeps the existing stacked design, with 48px section padding, 22px process-row padding and a 32px gap before capabilities. Typography and content remain unchanged. The owner’s plan-before-build preference is recorded in AGENTS.md for subsequent work.

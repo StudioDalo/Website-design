@@ -301,10 +301,49 @@ html .site-header[data-tone="dark"] .contact-link {
 .card-image .media img {
   transition: transform 650ms var(--ease);
 }
-.about-section,
-.approach-section {
+.about-section {
   padding-top: 80px;
   padding-bottom: 80px;
+}
+/* Keep the process readable while removing the long pauses between its parts. */
+.approach-section {
+  padding-top: 56px;
+  padding-bottom: 56px;
+}
+.approach-section > .section-heading {
+  margin-bottom: 0;
+}
+.approach-grid {
+  margin-top: 32px;
+  gap: 32px;
+}
+.approach-grid article {
+  padding-top: 20px;
+}
+.approach-number {
+  margin-bottom: 24px;
+}
+.approach-section .capabilities {
+  margin-top: 48px;
+}
+.approach-section .capabilities > .eyebrow {
+  padding-top: 0;
+  margin-bottom: 20px;
+}
+.approach-section .capabilities > div {
+  padding: 20px 0;
+}
+@media (min-width: 1024px) {
+  .approach-section .capabilities > div {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.7fr) 24px;
+    gap: 24px;
+  }
+  .approach-section .capabilities p {
+    grid-column: 2;
+  }
+  .approach-section .capabilities svg {
+    grid-column: 3;
+  }
 }
 .project-page {
   padding-top: calc(var(--header-offset, 100px) + 24px);
@@ -589,10 +628,28 @@ html .site-header[data-tone="dark"] .contact-link {
   .project-card:nth-child(3n + 1) .card-image .media {
     aspect-ratio: 5 / 4 !important;
   }
-  .about-section,
-  .approach-section {
+  .about-section {
     padding-top: 56px;
     padding-bottom: 56px;
+  }
+  .approach-section {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+  .approach-grid {
+    margin-top: 24px;
+  }
+  .approach-grid article {
+    padding: 22px 0;
+  }
+  .approach-number {
+    margin-bottom: 0;
+  }
+  .approach-grid h3 {
+    margin-bottom: 12px;
+  }
+  .approach-section .capabilities {
+    margin-top: 32px;
   }
   .project-dialog {
     width: 100%;
