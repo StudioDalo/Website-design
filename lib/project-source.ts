@@ -146,7 +146,7 @@ const slots = [
     tags: ["model", "form", "composition"],
   },
 ];
-export const sourceProjects: Project[] = slots.map((slot, i) => ({
+export const sourceProjects: Project[] = slots.map(({ art, alt, ...slot }, i) => ({
   ...slot,
   id: `demo-${i + 1}`,
   featuredOrder: i + 1,
@@ -163,15 +163,15 @@ export const sourceProjects: Project[] = slots.map((slot, i) => ({
   outcome:
     "Add an accurate account of the design or construction outcome when known. No project results are claimed in this demonstration.",
   hero: media(
-    slot.art,
-    slot.alt,
+    art,
+    alt,
     1440,
     i === 1 || i === 4 ? 1800 : i === 3 || i === 7 ? 1440 : 1080,
   ),
   gallery: [
     media(
-      slot.art,
-      slot.alt,
+      art,
+      alt,
       1440,
       i === 1 || i === 4 ? 1800 : i === 3 || i === 7 ? 1440 : 1080,
     ),

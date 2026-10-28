@@ -4,13 +4,13 @@ The owner authorised temporary public deployment on 24 October 2026. The existin
 
 ## Update the existing website in a browser
 
-1. [Download the tested website ZIP](https://github.com/StudioDalo/Website-design/raw/e39d6c17daf9fa0f0a2f296bee4b1d5d132bbf3f/studio-dalo-upload.zip).
+1. [Download the tested website ZIP](https://github.com/StudioDalo/Website-design/raw/4c137bf669fc42d7f655669b31309f72a4182440/studio-dalo-upload.zip).
 2. On Windows, right-click the ZIP and choose **Extract All**. Inside is a folder named **studio-dalo**.
 3. Open your existing Netlify project **imaginative-belekoy-450f0d**, then **Deploys**.
 4. Upload the entire new **studio-dalo** folder in the manual deployment area. Wait until Netlify reports success.
 5. Open the same website address above. The current version changes only after the upload succeeds.
 
-This package includes the tightened Approach section (approximately 28% shorter on desktop and 6% shorter on mobile), the compact floating header, refined circular reveal and reel, earlier project browsing, readable typography, @studiodalo_london links, eight labelled generated studies and a standalone editor at **/admin/**. Sanity project identifiers are configured for **eurg3hlb / production**. Complete the Sanity CORS/login steps, then import the current collection through Getting started in the editor. The public portfolio retains its bundled collection during this setup.
+This package includes the tightened Approach section (approximately 28% shorter on desktop and 6% shorter on mobile), the compact floating header, refined circular reveal and reel, earlier project browsing, readable typography, @studiodalo_london links, eight labelled generated studies and a standalone editor at **/admin/**. Sanity project identifiers are configured for **eurg3hlb / production**. Complete the Sanity CORS/login steps, then import the current collection through Getting started in the editor. The public portfolio retains its bundled collection during this setup. The latest importer excludes obsolete project-level art/alt helper fields; already-imported records can be cleaned through the editor without deleting projects. The owner confirmed sign-in/import and a project content preview on 28 October 2026; automatic publishing remains to be connected.
 
 The ZIP download has been fetched via HTTPS, checked byte-for-byte against the local build and verified as a valid archive. Workspace file links do not work as downloads in the owner’s ChatGPT browser.
 

@@ -30,6 +30,12 @@ The website address stays **https://imaginative-belekoy-450f0d.netlify.app**. Wo
 
 Do not enable CMS content before importing or adding projects unless you intend to display an empty collection. Unpublishing all projects is supported: the site does not silently restore old projects.
 
+### Existing demonstration imports: unknown `alt` and `art` fields
+
+The owner confirmed successful sign-in and demonstration import on 28 October 2026. The original import also included two obsolete project-level image-selection helpers, `alt` and `art`, causing an “Unknown fields found” warning. The corrected source, seed generator and authenticated importer now exclude them. New imports accept only supported project fields; retries still preserve existing documents and edits.
+
+For already imported documents, open the warning and use **Remove field** for only the top-level `alt` and `art` entries. These obsolete helpers are separate from the current cover/gallery image descriptions (`hero.alt` and `gallery[].alt`), which must be retained. Removing the two helper fields preserves the edited project title, images and other content. Do not delete/re-import projects to clear the warning. No account data is automatically migrated by deploying the corrected website.
+
 ## Make Publish update the website automatically
 
 1. In the existing Netlify project, create a **build hook** for branch **main**. Treat its URL as a private publishing credential; do not put it in the source repository or browser code.

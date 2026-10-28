@@ -8,6 +8,7 @@ import {
 } from "../lib/catalog";
 import { sourceProjects } from "../lib/project-source";
 import { getProjects, getProject } from "../lib/projects";
+import { projectImportFields } from "../lib/project-import";
 import { validateEnquiry, deliverEnquiry, type Enquiry } from "../lib/enquiry";
 
 test("all public data access excludes unapproved records and private media", () => {
@@ -23,6 +24,32 @@ test("discipline counts are calculated from approved records", () => {
   assert.equal(filterProjects(sourceProjects, "Architecture").length, 3);
   assert.equal(filterProjects(sourceProjects, "Interiors").length, 3);
   assert.equal(filterProjects(sourceProjects, "Design").length, 2);
+});
+test("public project records omit legacy image-selection helpers but retain image descriptions", () => {
+  for (const project of getProjects()) {
+    assert.equal(Object.hasOwn(project, "art"), false);
+    assert.equal(Object.hasOwn(project, "alt"), false);
+    assert.ok(project.hero.alt);
+    assert.ok(project.gallery.every((image) => image.alt));
+  }
+});
+test("Sanity import accepts supported content but excludes legacy fields and document metadata", () => {
+  const project = getProjects()[0];
+  const result = projectImportFields({
+    ...project,
+    title: "Courtyard — A Study in Light",
+    art: "courtyard",
+    alt: "Old illustration description",
+    _id: "unexpected-document",
+    _rev: "unexpected-revision",
+    unexpected: "Not a schema field",
+  });
+  assert.equal(result.title, "Courtyard — A Study in Light");
+  assert.equal(result.approved, project.approved);
+  assert.equal(result.placeholder, true);
+  assert.deepEqual(result.tags, project.tags);
+  for (const key of ["art", "alt", "_id", "_rev", "unexpected", "id", "slug", "hero", "gallery"])
+    assert.equal(Object.hasOwn(result, key), false, key);
 });
 test("search is case-insensitive and matches titles, sectors and tags", () => {
   assert.equal(

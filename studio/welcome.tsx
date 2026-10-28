@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useClient } from "sanity";
+import { projectImportFields } from "../lib/project-import";
 type SeedMedia = {
   src: string;
   type: string;
@@ -69,7 +70,7 @@ export function Welcome() {
         for (let i = 0; i < gallery.length; i++)
           images.push({ ...(await upload(gallery[i])), _key: `image-${i}` });
         transaction.createIfNotExists({
-          ...rest,
+          ...projectImportFields(rest),
           _id: `demo-${id}`,
           _type: "project",
           slug: { _type: "slug", current: String(slug) },
