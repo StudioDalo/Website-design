@@ -31,7 +31,7 @@ test("published CMS project, homepage text and typography reach the rendered sit
   await expect(
     page.getByText("Content controlled from the dashboard"),
   ).toBeVisible();
-  await expect(page.locator(".project-card")).toHaveCount(1);
+  await expect(page.locator(".project-card")).toHaveCount(2);
   await expect(page.locator("body")).not.toContainText(
     "PRIVATE_DRAFT_TEST_MARKER",
   );
@@ -97,4 +97,63 @@ test("reduced motion shows the video poster without downloading a film", async (
   await expect(page.locator(".cinema-slide.is-current img")).toBeVisible();
   await expect(page.locator(".cinema-slide video")).toHaveCount(0);
   expect(filmRequests).toBe(0);
+});
+
+test("CMS SEO, logos and real email route are connected without overriding project titles", async ({
+  page,
+}) => {
+  await mediaRoutes(page);
+  await page.goto("/");
+  await expect(page).toHaveTitle("Studio homepage search title");
+  await expect(page.locator('link[rel="icon"]')).toHaveAttribute(
+    "href",
+    /cdn.sanity.io/,
+  );
+  await page.setViewportSize({ width: 320, height: 844 });
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await expect(page.locator(".site-header .custom-brand-mark")).toBeVisible();
+  await expect(page.locator(".footer-bottom")).toContainText(
+    "Edited studio footer",
+  );
+  await expect(
+    page.getByRole("link", { name: "Email the studio", exact: true }),
+  ).toHaveAttribute("href", /^mailto:studio@example.org/);
+  await page.goto("/work/cms-courtyard/");
+  await expect(page).toHaveTitle("CMS courtyard — Studio Da'lo");
+  await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+    "content",
+    "index, follow",
+  );
+  const sitemap = await page.request.get("/sitemap.xml");
+  expect(await sitemap.text()).toContain("cms-courtyard");
+});
+test("single-image gallery disables navigation; video gallery retains native controls", async ({
+  page,
+}) => {
+  await mediaRoutes(page);
+  await page.goto("/work/single-image/");
+  await page.getByRole("button", { name: /^Enlarge image:/ }).click();
+  await expect(page.locator(".gallery-counter")).toHaveText("1 / 1");
+  await expect(
+    page.getByRole("button", { name: "Next image", exact: true }),
+  ).toBeDisabled();
+  await expect(
+    page.getByRole("button", { name: "Play slideshow", exact: true }),
+  ).toHaveCount(0);
+  await page.keyboard.press("Escape");
+  await page.goto("/work/cms-courtyard/");
+  await page.getByRole("button", { name: /^Enlarge image:/ }).click();
+  await page.getByRole("button", { name: "Next image", exact: true }).click();
+  await expect(page.locator(".gallery-stage video")).toHaveAttribute(
+    "controls",
+    "",
+  );
+  await expect(
+    page.getByRole("button", { name: "Play slideshow", exact: true }),
+  ).toBeDisabled();
 });

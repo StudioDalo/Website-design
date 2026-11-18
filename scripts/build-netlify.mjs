@@ -36,3 +36,5 @@ if (env.SANITY_PROJECT_ID && env.SANITY_DATASET) {
     `<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Studio Da'lo editing</title><body style="background:#f5f2ea;color:#1d3028;font:22px/1.6 Arial,sans-serif;max-width:720px;margin:10vh auto;padding:24px"><h1>Studio Da’lo</h1><p>Your editing dashboard is awaiting its account connection.</p><p>The public portfolio is available as usual.</p><a href="/">Return to the website</a></body></html>`,
   );
 }
+
+run("node", ["scripts/security-headers.mjs"]);

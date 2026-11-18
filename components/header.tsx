@@ -3,11 +3,12 @@ import Link from "next/link";
 import { useSite } from "./site-provider";
 import { useEffect, useRef, useState } from "react";
 import { Dialog } from "./dialog";
-import { Icon, Mark } from "./icons";
+import { BrandMark } from "./brand-mark";
+import { Icon } from "./icons";
 import { instagramProfile } from "@/lib/social";
 const items = ["Work", "About", "Approach", "Contact"];
 export function Header() {
-  const { brand } = useSite();
+  const { brand, labels } = useSite();
   const instagram = instagramProfile(brand.instagram);
   const [menu, setMenu] = useState(false);
   const header = useRef<HTMLElement>(null);
@@ -56,7 +57,7 @@ export function Header() {
       </a>
       <header ref={header} className="site-header" data-tone="light">
         <Link href="/" className="brand" aria-label={`${brand.name} home`}>
-          <Mark />
+          <BrandMark />
           <span>
             STUDIO
             <br />
@@ -67,17 +68,27 @@ export function Header() {
         <nav className="desktop-nav" aria-label="Main navigation">
           {items.map((item) => (
             <Link
-              key={item}
+              key={
+                labels[
+                  item.toLowerCase() as
+                    "work" | "about" | "approach" | "contact"
+                ]
+              }
               href={`/#${item.toLowerCase()}`}
               className={item === "Contact" ? "contact-link" : ""}
             >
-              {item}
+              {
+                labels[
+                  item.toLowerCase() as
+                    "work" | "about" | "approach" | "contact"
+                ]
+              }
               {item === "Contact" && <Icon />}
             </Link>
           ))}
         </nav>
         <Link className="mobile-contact" href="/#contact">
-          Contact
+          {labels.contact}
         </Link>
         <button
           className="menu-button icon-button"
@@ -101,12 +112,22 @@ export function Header() {
           <nav aria-label="Mobile navigation">
             {items.map((item, i) => (
               <Link
-                key={item}
+                key={
+                  labels[
+                    item.toLowerCase() as
+                      "work" | "about" | "approach" | "contact"
+                  ]
+                }
                 href={`/#${item.toLowerCase()}`}
                 onClick={() => setMenu(false)}
               >
                 <small>0{i + 1}</small>
-                {item}
+                {
+                  labels[
+                    item.toLowerCase() as
+                      "work" | "about" | "approach" | "contact"
+                  ]
+                }
                 <Icon />
               </Link>
             ))}

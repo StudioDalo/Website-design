@@ -11,7 +11,8 @@ import type { Project } from "@/lib/types";
 import { disciplines, filterProjects, neighbors } from "@/lib/catalog";
 import { useSite } from "./site-provider";
 import { Media } from "./media";
-import { Icon, Mark } from "./icons";
+import { BrandMark } from "./brand-mark";
+import { Icon } from "./icons";
 import { Dialog } from "./dialog";
 import { ProjectStory } from "./project-story";
 import { Contact } from "./contact";
@@ -459,7 +460,7 @@ export function Portfolio({
                 : aboutImage?.credit}
             </span>
           </div>
-          <Mark className="about-mark" />
+          <BrandMark className="about-mark" />
         </div>
         <div className="about-copy" data-arrival>
           <span className="eyebrow section-index">02 / A point of view</span>

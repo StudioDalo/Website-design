@@ -40,12 +40,28 @@ globalThis.fetch = async (input, init) => {
         projects: [
           project,
           {
+            ...project,
+            _id: "fixture-single",
+            title: "Single image study",
+            slug: "single-image",
+            gallery: [],
+            featuredOrder: 2,
+          },
+          {
             _id: "drafts.private",
             approved: true,
             title: "PRIVATE_DRAFT_TEST_MARKER",
           },
         ],
         settings: {
+          brand: { email: "studio@example.org" },
+          logos: { light: image, dark: image, icon: image },
+          labels: { footerNote: "Edited studio footer" },
+          seo: {
+            title: "Studio homepage search title",
+            description: "A configured homepage description",
+            image,
+          },
           home: { introTitle: "Content controlled from the dashboard" },
           appearance: {
             bodyFont: "georgia",

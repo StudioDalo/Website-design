@@ -6,6 +6,22 @@ export const defaultSettings = {
   profile,
   approach,
   capabilities,
+  logos: {
+    light: undefined as Media | undefined,
+    dark: undefined as Media | undefined,
+    icon: undefined as Media | undefined,
+  },
+  labels: {
+    work: "Work",
+    about: "About",
+    approach: "Approach",
+    contact: "Contact",
+    viewWork: "View selected work",
+    startConversation: "Start a conversation",
+    discussProject: "Discuss a similar project",
+    footerNote: "Made with intention.",
+  },
+  seo: { title: "", description: "", image: undefined as Media | undefined },
   appearance: {
     bodyFont: "manrope",
     headingFont: "instrument",

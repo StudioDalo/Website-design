@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import type { Media as MediaType } from "@/lib/types";
+import { sizedImageUrl } from "@/lib/media-url";
 import { Icon } from "./icons";
 export function Media({
   media,
@@ -126,16 +127,26 @@ export function Media({
           {(!decorativeVideo || moving) && <source src={media.src} />}
         </video>
       ) : (
-        <Image
-          src={media.src}
-          alt={media.alt}
-          width={media.width}
-          height={media.height}
-          priority={priority}
-          sizes={sizes}
-          onLoad={onReady}
-          onError={() => setFailedSource(media.src)}
-        />
+        <picture>
+          {media.src.startsWith("https://cdn.sanity.io/images/") && (
+            <source
+              sizes={sizes}
+              srcSet={[480, 800, 1200, 1600, 2200]
+                .map((width) => `${sizedImageUrl(media.src, width)} ${width}w`)
+                .join(", ")}
+            />
+          )}
+          <Image
+            src={sizedImageUrl(media.src, 1600)}
+            alt={media.alt}
+            width={media.width}
+            height={media.height}
+            priority={priority}
+            sizes={sizes}
+            onLoad={onReady}
+            onError={() => setFailedSource(media.src)}
+          />
+        </picture>
       )}
     </div>
   );

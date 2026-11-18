@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ProjectStory } from "@/components/project-story";
 import { Icon } from "@/components/icons";
 import { getContent } from "@/lib/content";
+import { pageMetadata } from "@/lib/seo";
 import { neighbors } from "@/lib/catalog";
 
 export const dynamicParams = false;
@@ -17,39 +18,10 @@ export async function generateMetadata({
   params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
   const { slug } = await params;
-  const {
-    projects,
-    settings: { brand },
-  } = await getContent();
+  const { projects, settings } = await getContent();
   const project = projects.find((p) => p.slug === slug);
   if (!project) return { title: "Project not found" };
-  const description = project.introduction;
-  const url = brand.siteUrl
-    ? `${brand.siteUrl}/work/${project.slug}`
-    : undefined;
-  return {
-    title: project.title,
-    description,
-    alternates: url ? { canonical: url } : undefined,
-    openGraph: {
-      title: `${project.title} — ${brand.name}`,
-      description,
-      type: "article",
-      ...(url ? { url } : {}),
-      ...(!project.placeholder && brand.siteUrl
-        ? {
-            images: [
-              {
-                url: new URL(project.hero.src, brand.siteUrl).href,
-                width: project.hero.width,
-                height: project.hero.height,
-                alt: project.hero.alt,
-              },
-            ],
-          }
-        : {}),
-    },
-  };
+  return pageMetadata(settings, project);
 }
 export default async function ProjectPage({
   params,

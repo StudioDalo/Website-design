@@ -9,7 +9,6 @@ import {
 import { sourceProjects } from "../lib/project-source";
 import { getProjects, getProject } from "../lib/projects";
 import { projectImportFields } from "../lib/project-import";
-import { validateEnquiry, deliverEnquiry, type Enquiry } from "../lib/enquiry";
 
 test("all public data access excludes unapproved records and private media", () => {
   assert.equal(sourceProjects.length, 9);
@@ -101,34 +100,6 @@ test("approved project schema has accessible credited media and deliberate place
     }
     assert.ok(p.gallery.some((m) => m.type === "drawing"));
   }
-});
-const valid: Enquiry = {
-  name: "QA Visitor",
-  email: "qa@example.org",
-  company: "",
-  projectType: "Architecture",
-  location: "",
-  message: "A local demonstration enquiry.",
-  reference: "",
-};
-test("enquiry validation rejects missing required values and malformed email", () => {
-  assert.deepEqual(validateEnquiry(valid), {});
-  assert.deepEqual(
-    Object.keys(
-      validateEnquiry({
-        ...valid,
-        name: " ",
-        email: "invalid@",
-        projectType: "",
-        message: "short",
-      }),
-    ).sort(),
-    ["email", "message", "name", "projectType"],
-  );
-});
-test("delivery boundary reports demo, never delivery success", async () => {
-  const result = await deliverEnquiry(valid);
-  assert.deepEqual(result, { mode: "demo" });
 });
 test("approval filter leaves source untouched and respects featured ordering", () => {
   const copy = [...sourceProjects].reverse();

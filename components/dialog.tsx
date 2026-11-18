@@ -8,6 +8,7 @@ export function Dialog({
   className = "",
   closeLabel = "Close project",
   restoreFocusTo,
+  onKeyDown,
 }: {
   children: ReactNode;
   titleId: string;
@@ -15,6 +16,7 @@ export function Dialog({
   className?: string;
   closeLabel?: string;
   restoreFocusTo?: HTMLElement | null;
+  onKeyDown?: (event: KeyboardEvent<HTMLDialogElement>) => void;
 }) {
   const ref = useRef<HTMLDialogElement>(null);
   const closingAnimation = useRef<Animation | null>(null);
@@ -122,7 +124,10 @@ export function Dialog({
     <dialog
       ref={ref}
       aria-modal="true"
-      onKeyDown={trapFocus}
+      onKeyDown={(event) => {
+        trapFocus(event);
+        onKeyDown?.(event);
+      }}
       aria-labelledby={titleId}
       className={`dialog ${className}`}
       onCancel={(e) => {

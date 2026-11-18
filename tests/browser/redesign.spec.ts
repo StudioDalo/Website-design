@@ -152,7 +152,7 @@ test("collection reflow animates and a desktop case study has media beside its i
   ).toBeInViewport();
 });
 
-test("without JavaScript the static wordmark, project links and safe demo form remain available", async ({
+test("without JavaScript the static wordmark, project links and direct contact remain available", async ({
   browser,
 }) => {
   const context = await browser.newContext({
@@ -165,9 +165,8 @@ test("without JavaScript the static wordmark, project links and safe demo form r
   await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName(
     "Studio Da'lo.",
   );
-  await expect(
-    page.getByRole("button", { name: "Preview enquiry", exact: true }),
-  ).toBeDisabled();
+  await expect(page.locator("#contact form")).toHaveCount(0);
+  await expect(page.locator("#contact a[href^='https://www.instagram.com/']")).toHaveCount(1);
   await page
     .getByRole("link", { name: "View selected work", exact: true })
     .click();

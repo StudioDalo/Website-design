@@ -1,36 +1,43 @@
-# Open and update Studio Da’lo
+# Deployment and publishing
 
-The owner authorised temporary public deployment on 24 October 2026. The existing website address is **https://imaginative-belekoy-450f0d.netlify.app**. No paid purchase, domain registration or real enquiry delivery is configured.
+The live website is https://imaginative-belekoy-450f0d.netlify.app/ and the standalone editor is https://imaginative-belekoy-450f0d.netlify.app/admin/.
 
-## Update the existing website in a browser
+## Current production connection
 
-1. [Download the tested website ZIP](https://github.com/StudioDalo/Website-design/raw/4c137bf669fc42d7f655669b31309f72a4182440/studio-dalo-upload.zip).
-2. On Windows, right-click the ZIP and choose **Extract All**. Inside is a folder named **studio-dalo**.
-3. Open your existing Netlify project **imaginative-belekoy-450f0d**, then **Deploys**.
-4. Upload the entire new **studio-dalo** folder in the manual deployment area. Wait until Netlify reports success.
-5. Open the same website address above. The current version changes only after the upload succeeds.
+The owner connected the existing Netlify project to **StudioDalo/Website-design**, production branch **main**, and confirmed that Sanity Publish triggers a successful automatic build. Preserve that existing connection. The branch `studio-dalo-download-2026-10-24` is a historical download archive, not the production source.
 
-This package includes the tightened Approach section (approximately 28% shorter on desktop and 6% shorter on mobile), the compact floating header, refined circular reveal and reel, earlier project browsing, readable typography, @studiodalo_london links, eight labelled generated studies and a standalone editor at **/admin/**. Sanity project identifiers are configured for **eurg3hlb / production**. Complete the Sanity CORS/login steps, then import the current collection through Getting started in the editor. The public portfolio retains its bundled collection during this setup. The latest importer excludes obsolete project-level art/alt helper fields; already-imported records can be cleaned through the editor without deleting projects. The owner confirmed sign-in/import and a project content preview on 28 October 2026; automatic publishing remains to be connected.
+| Setting | Value |
+|---|---|
+| Base directory | Repository root / empty |
+| Package directory | Not set |
+| Build command | `npm run build:netlify` |
+| Publish directory | `.next-static` |
+| Node | 24, supplied by netlify.toml |
+| `SANITY_CONTENT_ENABLED` | `1` in the existing Netlify production environment |
+| Sanity project / dataset | `eurg3hlb` / `production` |
 
-The ZIP download has been fetched via HTTPS, checked byte-for-byte against the local build and verified as a valid archive. Workspace file links do not work as downloads in the owner’s ChatGPT browser.
+For normal content updates, edit Sanity and Publish. Wait for Netlify's successful deployment before checking the public site. No ZIP upload is needed. A failed build leaves the previous successful deployment available; use Netlify's deployment history for rollback if needed.
 
-## Enable editing and automatic publishing
+Do not change the website address or canonical URL until the owner provides a purchased domain and it is connected. No paid service or real server-side enquiry provider is configured in this upgrade. Direct contact uses the configured public email and approved Instagram profile.
 
-Follow [EDITOR_SETUP.md](EDITOR_SETUP.md). Connect the **existing** Netlify site to this repository’s **main** branch, use the supplied build configuration, finish the initial import and then set **SANITY_CONTENT_ENABLED=1**. A Sanity publication webhook starts subsequent Netlify builds. No repeat ZIP uploads are needed after that connection works.
+## Build output and security headers
 
-Keep the hook URL and any private-dataset viewer token in the account settings rather than the repository or browser bundle. A failed build retains the previous successful site. Netlify’s deployment history provides rollback. The assistant cannot sign in to the owner’s accounts; actual login, import, webhook and publish-to-live checks remain pending.
+`build:netlify` builds the static Next website, prepares the demonstration seed, installs/types/checks/builds the standalone Studio and generates per-route `_headers` from the actual exported HTML. Inline Next scripts use CSP SHA-256 hashes. The editor has a separate Sanity-compatible policy. Netlify post-processing is disabled to prevent changes invalidating those hashes. Common security headers are configured in netlify.toml.
 
-## Rebuild and verify
+Never put private API tokens or build-hook URLs in source, public files or chat. If a private dataset requires a read token, it belongs in Netlify's secret environment settings as `SANITY_READ_TOKEN`. It is removed from the Studio build environment. No read token is needed for published reads from a public dataset.
+
+## Local verification
 
 ```sh
 npm run check
-npm run build:netlify
+NEXT_TELEMETRY_DISABLED=1 npm run test:cms
+STUDIO_DALO_NPM_CACHE=/workspace/.npm-cache npm run build:netlify
 STUDIO_DALO_TEST_STATIC=1 npm run test:e2e
-npm run package:static
+npm run test:editor
 ```
 
-Next 16.4 writes the complete static export to **.next-static/**. The upload ZIP contains only public export files and host header instructions, with a top-level studio-dalo folder. It contains no source, credentials, Git metadata, node_modules or unapproved fixture.
+The CMS test uses synthetic content and removes its temporary main export afterwards. Rebuild normally before packaging or serving the actual output. Account login and live webhook behaviour must be distinguished from mocked API checks.
 
-`npm run build:netlify` also builds the standalone Studio when identifiers are present and includes the approved-only example import JSON. `npm run build:static` alone builds only the public Next website. `npm run test:cms` uses a synthetic dataset response and removes its synthetic export afterward; always rebuild normally before packaging.
+`npm run package:static` remains available for exceptional manual delivery after the full build; it requires the generated security headers. Do not upload a local demonstration build over the owner's live CMS-backed site. The current source is deployed through main.
 
-The contact form remains demo-only and never reports an enquiry as delivered. Pages remain noindex while the content is a demonstration. Physical-device and real account/hosting checks are distinct from local browser verification.
+Google Drive imports are deferred. See UPGRADE_2026-11-18.md for completed features, security findings and access limitations.

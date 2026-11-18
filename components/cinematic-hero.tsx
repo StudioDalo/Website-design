@@ -11,7 +11,7 @@ const ease = (v: number) => v * v * (3 - 2 * v);
 
 /** Native scrolling drives an original wordmark-to-scene aperture; no scroll hijacking. */
 export function CinematicHero({ projects }: { projects: Project[] }) {
-  const { brand, hero, home } = useSite();
+  const { brand, hero, home, labels } = useSite();
   const root = useRef<HTMLElement>(null);
   const opening = useRef<SVGCircleElement>(null);
   const word = useRef<SVGTextElement>(null);
@@ -265,7 +265,7 @@ export function CinematicHero({ projects }: { projects: Project[] }) {
             </span>
           </div>
           <a className="hero-action" href="#work">
-            <span>View selected work</span>
+            <span>{labels.viewWork}</span>
             <span className="round-arrow">
               <Icon name="down" />
             </span>

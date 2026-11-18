@@ -19,17 +19,12 @@ for path in source.rglob('*'):
         content = path.read_text(errors='replace')
         if 'Unpublished internal study' in content or '/private/unapproved' in content:
             raise SystemExit('Publication check failed: an excluded fixture reached the export.')
-headers = '''/*
-  X-Content-Type-Options: nosniff
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
-  X-Robots-Tag: noindex, nofollow
-'''
+if not (source / '_headers').is_file():
+    raise SystemExit('Run the full build:netlify command to prepare security headers.')
 with ZipFile(args.output, 'w', ZIP_DEFLATED) as package:
     for path in sorted(source.rglob('*')):
         if path.is_file():
             package.write(path, 'studio-dalo/' + path.relative_to(source).as_posix())
-    package.writestr('studio-dalo/_headers', headers)
 with ZipFile(args.output) as package:
     if package.testzip() is not None:
         raise SystemExit('Archive integrity check failed.')

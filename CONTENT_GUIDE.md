@@ -116,3 +116,11 @@ The circular reveal remains. Opening copy from `home.heroIntro`, `home.heroIntro
 Collection captions keep 16px supporting text and 18–20px prose. The image-led wall uses deliberate cover ratios and two columns on wider phones (420px and above), one on smaller phones. Uncropped enlargement remains available. Project sheets have a contained desktop layout and a rounded phone layout, with keyboard focus restored on close.
 
 In Sanity, Website settings → Identity → Instagram profile controls the social link. Enter the HTTPS profile URL; the public boundary validates and normalises it. Existing CMS documents that explicitly contain an empty Instagram field must be updated there if you want the link shown when CMS publishing is enabled. Publishing and enquiry-provider connections remain separate account setup tasks.
+
+## Gallery, logos and search controls — 18 November 2026
+
+Projects now open a connected image viewer. Upload and drag gallery images into order in Sanity as before; the website includes the cover once and preserves every other distinct asset. Keep meaningful image descriptions and credits. Portrait/landscape images fit without cropping in the viewer.
+
+Website settings now includes Branding, Labels and SEO. Branding can replace light/dark website logos and the browser icon; the original artwork is retained by default and downloadable at `/brand/`. Labels changes navigation text without changing page anchors. SEO controls homepage search/share text; each project also has Search & sharing fields. Do not mark the imported fictional studies as real projects to enable search indexing. Existing real project edits are preserved.
+
+The contact section now opens the studio's confirmed email application route (when Public contact email is filled) and the existing Instagram profile. It does not collect or pretend to deliver form submissions. These are direct contact routes without a new paid service. See `/privacy/` for the implemented data/storage behaviour and `UPGRADE_2026-11-18.md` for details and limits.

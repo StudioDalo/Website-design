@@ -4,6 +4,10 @@ const string = (name: string, title: string, description?: string) =>
   defineField({ name, title, type: "string", description });
 const prose = (name: string, title: string) =>
   defineField({ name, title, type: "text", rows: 3 });
+const stillImageValidation = (value: unknown) =>
+  (value as { type?: string } | undefined)?.type === "video"
+    ? "Use a still image for logos and sharing."
+    : true;
 const section = (
   name: string,
   title: string,
@@ -120,6 +124,7 @@ export const project = defineType({
     { name: "story", title: "Story & credits" },
     { name: "media", title: "Images" },
     { name: "publishing", title: "Publishing" },
+    { name: "seo", title: "Search & sharing" },
   ],
   initialValue: { approved: false, placeholder: false, featuredOrder: 100 },
   fields: [
@@ -216,6 +221,21 @@ export const project = defineType({
       description:
         "Drag images into the order you want. The cover is included automatically.",
     }),
+    section(
+      "seo",
+      "Search and sharing",
+      [
+        string("title", "Search title"),
+        prose("description", "Search description"),
+        defineField({
+          name: "image",
+          title: "Sharing image",
+          type: "mediaItem",
+          validation: (rule) => rule.custom(stillImageValidation),
+        }),
+      ],
+      "seo",
+    ),
     defineField({
       name: "featuredOrder",
       title: "Collection order",
@@ -299,8 +319,70 @@ export const siteSettings = defineType({
     "About",
     "Approach",
     "Appearance",
+    "Branding",
+    "Labels",
+    "SEO",
   ].map((title, i) => ({ name: title.toLowerCase(), title, default: i === 0 })),
   fields: [
+    section(
+      "logos",
+      "Logo images",
+      [
+        ...[
+          ["light", "Light logo — for dark backgrounds"],
+          ["dark", "Dark logo — for light backgrounds"],
+          ["icon", "Browser icon"],
+        ].map(([name, title]) =>
+          defineField({
+            name,
+            title,
+            type: "mediaItem",
+            validation: (rule) => rule.custom(stillImageValidation),
+            initialValue: {
+              type: "image",
+              alt: name === "icon" ? "Studio Da’lo icon" : "Studio Da’lo logo",
+              credit: "Studio Da’lo",
+              caption: "",
+            },
+            description:
+              "Use a transparent PNG or WebP. Leave empty to keep the original identity.",
+          }),
+        ),
+      ],
+      "branding",
+    ),
+    section(
+      "labels",
+      "Navigation and calls to action",
+      [
+        ...Object.entries({
+          work: "Work navigation",
+          about: "About navigation",
+          approach: "Approach navigation",
+          contact: "Contact navigation",
+          viewWork: "Hero work link",
+          startConversation: "Conversation link",
+          discussProject: "Project enquiry link",
+          footerNote: "Footer note",
+        }).map(([name, title]) => string(name, title)),
+      ],
+      "labels",
+    ),
+    section(
+      "seo",
+      "Homepage search and sharing",
+      [
+        string("title", "Search title"),
+        prose("description", "Search description"),
+        defineField({
+          name: "image",
+          title: "Sharing image",
+          type: "mediaItem",
+          validation: (rule) => rule.custom(stillImageValidation),
+        }),
+      ],
+      "seo",
+    ),
     section(
       "brand",
       "Studio identity",

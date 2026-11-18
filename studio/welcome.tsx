@@ -130,6 +130,15 @@ export function Welcome() {
           succeeds.
         </li>
       </ol>
+      <p>
+        <a href="/brand/" target="_blank" rel="noopener noreferrer">
+          Download your original logo assets
+        </a>
+      </p>
+      <p>
+        Website settings → Branding controls replacement logos; Labels controls
+        navigation and calls to action; SEO controls search and sharing.
+      </p>
       <h2 style={{ fontSize: "28px" }}>
         Start with the current demonstration collection
       </h2>

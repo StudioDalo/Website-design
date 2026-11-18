@@ -1,16 +1,17 @@
 "use client";
 import Link from "next/link";
 import { useSite } from "./site-provider";
-import { Icon, Mark } from "./icons";
+import { BrandMark } from "./brand-mark";
+import { Icon } from "./icons";
 import { instagramProfile } from "@/lib/social";
 export function Footer({ demonstration = true }: { demonstration?: boolean }) {
-  const { brand } = useSite();
+  const { brand, labels } = useSite();
   const instagram = instagramProfile(brand.instagram);
   return (
     <footer className="site-footer">
       <div className="footer-top">
         <Link href="/" className="brand">
-          <Mark />
+          <BrandMark />
           <span>{brand.name.toUpperCase()}.</span>
         </Link>
         <p>{brand.description}</p>
@@ -34,7 +35,9 @@ export function Footer({ demonstration = true }: { demonstration?: boolean }) {
         {demonstration && (
           <span>Demonstration portfolio · Generated mood imagery</span>
         )}
-        <span>Made with intention.</span>
+        <span>{labels.footerNote}</span>
+        <Link href="/privacy/">Privacy & storage</Link>
+        <Link href="/brand/">Brand assets</Link>
       </div>
     </footer>
   );

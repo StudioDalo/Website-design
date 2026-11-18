@@ -53,3 +53,9 @@ The enquiry form is an honest local-only demonstration. A real contact email can
 ## Current refinement
 
 `app/refinements.css` contains the compact navigation and refined collection/sheet layouts. `components/header.tsx` measures its height for anchor offsets and tracks section contrast. The hero uses loaded-image-aware, phase-based reel timing; collection movement and progressive section entrances respect reduced motion. The project dialog restores focus after closing to a fragment URL. The current suite contains 16 unit/data tests, 35 website browser journeys and three isolated CMS/video journeys, plus an editor deployment-route check.
+
+## Portfolio and editor upgrade — 18 November 2026
+
+The connected project viewer supports ordered galleries, thumbnails, swipe/keyboard navigation, optional playback and motion/data-saving preferences. New Branding, Labels and SEO editor groups retain compatibility with existing documents. Original outlined SVG/transparent PNG logos are available at `/brand/`; `/privacy/` describes implemented storage and contact behaviour. Contact is now through the configured public email and Instagram, without a simulated form submission.
+
+Real-project indexing, sitemap/robots, canonical URLs, sharing metadata and Organization structured data are generated from CMS content. Production CSP headers are generated from the exported scripts, with a separate policy for the editor. Next is 16.4.6; Sanity is 6.24.0. Remaining upstream dependency advisories are documented rather than described as resolved. Google Drive ingestion is deferred by the owner. See `UPGRADE_2026-11-18.md`, `CONTENT_GUIDE.md` and `DEPLOYMENT.md`.

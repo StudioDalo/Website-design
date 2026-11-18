@@ -2,10 +2,11 @@
 import Link from "next/link";
 import { useSite } from "./site-provider";
 import { useState } from "react";
-import type { Project, Media as MediaType } from "@/lib/types";
+import type { Project } from "@/lib/types";
+import { projectGallery } from "@/lib/gallery";
 import { Media } from "./media";
 import { Icon } from "./icons";
-import { Dialog } from "./dialog";
+import { ProjectGallery } from "./project-gallery";
 export function ProjectStory({
   project,
   previous,
@@ -21,14 +22,15 @@ export function ProjectStory({
   onDiscuss?: (p: Project) => void;
   compact?: boolean;
 }) {
-  const { brand } = useSite();
+  const { brand, labels } = useSite();
   const displayTitle = project.placeholder
     ? project.title.replace(/ — Placeholder \d+$/, "")
     : project.title;
   const slot = project.placeholder
     ? project.title.match(/Placeholder \d+$/)?.[0]
     : undefined;
-  const [zoom, setZoom] = useState<MediaType | null>(null);
+  const gallery = projectGallery(project);
+  const [zoom, setZoom] = useState<number | null>(null);
   const [shareFeedback, setShareFeedback] = useState("");
   async function share() {
     const url = `${window.location.origin}/work/${project.slug}`;
@@ -153,7 +155,7 @@ export function ProjectStory({
               }
             }}
           >
-            Start a conversation <Icon />
+            {labels.startConversation} <Icon />
           </Link>
           <p role="status" className="share-feedback">
             {shareFeedback}
@@ -163,7 +165,7 @@ export function ProjectStory({
           <button
             className="hero-enlarge-button"
             aria-label={`Enlarge image: ${project.hero.alt}`}
-            onClick={() => setZoom(project.hero)}
+            onClick={() => setZoom(0)}
           >
             <Media
               key={project.hero.src}
@@ -240,7 +242,7 @@ export function ProjectStory({
         </div>
       </div>
       <div className="story-gallery">
-        {project.gallery.slice(1).map((media, i) => (
+        {gallery.slice(1).map((media, i) => (
           <figure
             key={`${media.src}-${i}`}
             className={media.type === "drawing" ? "drawing-figure" : ""}
@@ -251,7 +253,7 @@ export function ProjectStory({
               <button
                 className="enlarge-button"
                 aria-label={`Enlarge ${media.type === "drawing" ? "drawing" : "image"}: ${media.alt}`}
-                onClick={() => setZoom(media)}
+                onClick={() => setZoom(i + 1)}
               >
                 <Media media={media} contain />
                 <span className="enlarge-label">
@@ -280,7 +282,7 @@ export function ProjectStory({
             }
           }}
         >
-          Discuss a similar project <Icon />
+          {labels.discussProject} <Icon />
         </Link>
         <p>
           {project.placeholder
@@ -292,31 +294,12 @@ export function ProjectStory({
         {neighbor(previous, "previous")}
         {neighbor(next, "next")}
       </nav>
-      {zoom && (
-        <Dialog
+      {zoom !== null && (
+        <ProjectGallery
+          items={gallery}
+          initialIndex={zoom}
           onClose={() => setZoom(null)}
-          titleId="zoom-title"
-          className="zoom-dialog"
-          closeLabel="Close enlarged media"
-        >
-          <h2 id="zoom-title" className="eyebrow">
-            {zoom.type === "drawing"
-              ? "Drawing — uncropped view"
-              : "Image — uncropped view"}
-          </h2>
-          <div className="zoom-scroll">
-            <Media media={zoom} contain />
-          </div>
-          <p>{zoom.caption}</p>
-          <a
-            href={zoom.src}
-            target="_blank"
-            rel="noreferrer"
-            className="text-button"
-          >
-            Open original at full size <Icon />
-          </a>
-        </Dialog>
+        />
       )}
     </article>
   );

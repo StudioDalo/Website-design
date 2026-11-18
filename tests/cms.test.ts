@@ -70,6 +70,8 @@ test("CMS media requires HTTPS approved CDN, dimensions, descriptions and video 
     { alt: "" },
     { credit: "" },
     { src: "javascript:alert(1)" },
+    { src: "https://user:password@cdn.sanity.io/images/a.png" },
+    { src: "https://cdn.sanity.io:444/images/a.png" },
   ])
     assert.throws(() => mediaFromCms({ ...media, ...bad }));
   assert.throws(() => mediaFromCms({ ...media, type: "video" }));

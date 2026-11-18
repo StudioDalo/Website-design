@@ -83,7 +83,7 @@ test("overlay, filtered neighbors, focus, drawing, Escape, history and project e
   await expect(
     page.getByRole("heading", { name: "Drawing — uncropped view" }),
   ).toBeVisible();
-  await expect(page.locator(".zoom-dialog img")).toHaveCSS(
+  await expect(page.locator(".zoom-dialog .gallery-stage img")).toHaveCSS(
     "object-fit",
     "contain",
   );
@@ -143,44 +143,12 @@ test("direct project, refresh, metadata, previous/next, unpublished and unknown 
   expect(await home.text()).not.toContain("/private/unapproved");
 });
 
-test("contact validation, honest demo outcome, no outbound enquiry and no personal storage", async ({
-  page,
-}) => {
+test("contact route is usable without a demo submission and preserves project context", async ({ page }) => {
   await page.goto("/?project=courtyard-study#contact");
-  await expect(page.locator(".project-reference")).toContainText(
-    "Courtyard — Placeholder 01",
-  );
-  await page.getByRole("button", { name: "Preview enquiry" }).click();
-  await expect(page.getByText("Please enter your name.")).toBeVisible();
-  await expect(page.getByLabel("Your name")).toBeFocused();
-  await page.getByLabel("Your name").fill("QA Visitor");
-  await page.getByLabel("Email address").fill("not-an-email");
-  await page.getByLabel("Project type").selectOption("Architecture");
-  await page
-    .getByLabel("What are you thinking?")
-    .fill("A thoughtful new project enquiry.");
-  await page.getByRole("button", { name: "Preview enquiry" }).click();
-  await expect(
-    page.getByText("Please enter a valid email address."),
-  ).toBeVisible();
-  await page.getByLabel("Email address").fill("qa@example.org");
-  const requests: string[] = [];
-  page.on("request", (r) => {
-    if (r.method() !== "GET") requests.push(r.url());
-  });
-  await page.getByRole("button", { name: "Preview enquiry" }).click();
-  await expect(
-    page.getByRole("button", { name: "Checking enquiry…" }),
-  ).toBeDisabled();
-  await expect(
-    page.getByText("Demo only—your enquiry has not been sent."),
-  ).toBeVisible();
-  expect(requests).toEqual([]);
-  const storage = await page.evaluate(() =>
-    JSON.stringify({ ...localStorage }),
-  );
-  expect(storage).not.toContain("qa@example.org");
-  expect(storage).not.toContain("QA Visitor");
+  await expect(page.locator(".project-reference")).toContainText("Courtyard — Placeholder 01");
+  await expect(page.locator("#contact form")).toHaveCount(0);
+  await expect(page.locator("#contact a[href='https://www.instagram.com/studiodalo_london/']")).toBeVisible();
+  await expect(page.locator("#contact")).not.toContainText("Demo only");
   await page.getByRole("button", { name: "Remove project reference" }).click();
   await expect(page.locator(".project-reference")).toHaveCount(0);
 });

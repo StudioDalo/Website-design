@@ -72,3 +72,7 @@ The enquiry form remains demonstration-only. Adding a public contact email gives
 - Authentication, import write permissions, the real webhook and a real publish-to-live cycle still require your accounts and must be checked after connection.
 
 The environment’s outbound proxy currently blocks direct requests to the real Sanity project API. This does not establish a problem with the account. Compilation and isolated CMS tests work here; the owner’s browser/Netlify must complete the real login, import and publishing checks.
+
+## Current connection and new controls — 18 November 2026
+
+The owner confirmed the `main` Git connection, `SANITY_CONTENT_ENABLED=1` and a successful Sanity-publication-triggered Netlify build on 28 October. Preserve those existing account settings. The latest upgrade adds Branding, Labels and SEO groups plus connected project galleries. Existing Sanity content needs no re-import or migration. See `UPGRADE_2026-11-18.md` and `CONTENT_GUIDE.md` for editor instructions. Google Drive import is deferred; no Drive content was accessed in this run.

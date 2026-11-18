@@ -49,3 +49,7 @@ Original downloaded TTF SHA-256 digests:
 Oasis HTML/CSS/JavaScript was reviewed for interaction concepts. Its proprietary fonts, logo, wording, photographs, films and application code are not used in the delivered website. The Studio Da'lo aperture, native scroll behavior, scene reel, gallery transitions and project layouts were independently implemented. Source-analysis artifacts under `artifacts/oasis-*` are not public website assets and are excluded from the downloadable source archive.
 
 Before replacing any demonstration asset, record its creator, source, rights-holder, licence or express permission, attribution requirements and approval for public use. Keep confidential and unapproved media outside `public/`, regardless of a record's publication flag.
+
+## Original brand exports — 18 November 2026
+
+`public/brand/` contains original DA monogram paths from components/icons.tsx and an outlined Manrope 700 wordmark. SVGs require no external fonts; PNG variants have transparent backgrounds. Manrope's SIL Open Font License is included at `/font-licenses/Manrope-OFL.txt`. These exports are derived from the website vector identity, not the earlier generated logo images. No new project imagery is generated or imported in this upgrade.

@@ -4,8 +4,10 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { getContent } from "@/lib/content";
 import { SiteProvider } from "@/components/site-provider";
+import { pageMetadata } from "@/lib/seo";
 import "./globals.css";
 import "./refinements.css";
+import "./upgrade.css";
 const sans = localFont({
   src: "../assets/fonts/Manrope.woff2",
   variable: "--font-dalo-sans",
@@ -29,23 +31,12 @@ const serif = localFont({
   display: "swap",
 });
 export async function generateMetadata(): Promise<Metadata> {
-  const {
-    projects,
-    settings: { brand },
-  } = await getContent();
-  return {
-    title: {
-      default: `${brand.name} — Architecture, Interiors & Design`,
-      template: `%s — ${brand.name}`,
-    },
-    description:
-      brand.description +
-      (projects.some((p) => p.placeholder)
-        ? " An evolving portfolio with clearly labelled demonstration content."
-        : ""),
-    robots: { index: false, follow: false },
-    icons: { icon: "/icon.svg" },
-  };
+  const { projects, settings } = await getContent();
+  return pageMetadata(
+    settings,
+    undefined,
+    projects.some((p) => !p.placeholder),
+  );
 }
 export const viewport: Viewport = {
   themeColor: "#f1f0e8",

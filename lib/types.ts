@@ -35,4 +35,5 @@ export type Project = {
   approved: boolean;
   placeholder: boolean;
   tags: string[];
+  seo?: { title?: string; description?: string; image?: Media };
 };

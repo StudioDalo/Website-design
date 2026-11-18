@@ -11,6 +11,7 @@ let built = false;
 try {
   run("npm", ["run", "build:static"], {
     ...process.env,
+    NEXT_TELEMETRY_DISABLED: "1",
     SANITY_PROJECT_ID: "example",
     SANITY_DATASET: "production",
     SANITY_READ_TOKEN: "",

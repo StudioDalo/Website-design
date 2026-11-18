@@ -1,11 +1,33 @@
 #!/usr/bin/env python3
 """Local verification server for the exported upload package, including its 404 page."""
 import argparse
+import fnmatch
+import tomllib
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 
 class StaticHandler(SimpleHTTPRequestHandler):
+    def end_headers(self):
+        headers = {}
+        config = Path(__file__).resolve().parent.parent / 'netlify.toml'
+        if config.exists():
+            for rule in tomllib.loads(config.read_text()).get('headers', []):
+                if fnmatch.fnmatch(self.path.split('?', 1)[0], rule['for']):
+                    headers.update(rule.get('values', {}))
+        rules = Path(self.directory) / '_headers'
+        pattern = None
+        if rules.exists():
+            for line in rules.read_text().splitlines():
+                if line.startswith('/'):
+                    pattern = line.strip()
+                elif line.startswith('  ') and pattern and ':' in line and fnmatch.fnmatch(self.path.split('?', 1)[0], pattern):
+                    key, value = line.strip().split(':', 1)
+                    headers[key] = value.strip()
+        for key, value in headers.items():
+            self.send_header(key, value)
+        super().end_headers()
+
     def do_GET(self):
         # Match Netlify's /admin/* SPA fallback for dashboard verification.
         path = self.path.split('?', 1)[0]

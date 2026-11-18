@@ -21,7 +21,13 @@ export function mediaFromCms(value: unknown): Media {
   const src = requiredText(m.src, "media source");
   // Only Sanity's asset CDN can supply CMS media. No arbitrary URL or HTML execution.
   const url = new URL(src);
-  if (url.protocol !== "https:" || url.hostname !== "cdn.sanity.io")
+  if (
+    url.protocol !== "https:" ||
+    url.hostname !== "cdn.sanity.io" ||
+    url.username ||
+    url.password ||
+    url.port
+  )
     throw new Error("CMS media must use the Sanity HTTPS asset CDN.");
   const width = Number(m.width),
     height = Number(m.height);
@@ -32,7 +38,13 @@ export function mediaFromCms(value: unknown): Media {
   const poster = text(m.poster);
   if (type === "video") {
     const p = new URL(poster);
-    if (p.protocol !== "https:" || p.hostname !== "cdn.sanity.io")
+    if (
+      p.protocol !== "https:" ||
+      p.hostname !== "cdn.sanity.io" ||
+      p.username ||
+      p.password ||
+      p.port
+    )
       throw new Error("Hero videos need a Sanity poster image.");
   }
   return {
@@ -49,6 +61,12 @@ export function mediaFromCms(value: unknown): Media {
       ? { focalX: Number(m.focalX), focalY: Number(m.focalY) }
       : {}),
   };
+}
+function stillImageFromCms(value: unknown): Media {
+  const image = mediaFromCms(value);
+  if (image.type === "video")
+    throw new Error("Use a still image for logos and sharing.");
+  return image;
 }
 export function projectsFromCms(values: unknown): Project[] {
   if (!Array.isArray(values))
@@ -91,6 +109,15 @@ export function projectsFromCms(values: unknown): Project[] {
           : 999,
         approved: true,
         placeholder: p.placeholder === true,
+        seo: p.seo
+          ? {
+              title: text(record(p.seo).title),
+              description: text(record(p.seo).description),
+              ...(record(p.seo).image
+                ? { image: stillImageFromCms(record(p.seo).image) }
+                : {}),
+            }
+          : undefined,
         tags: Array.isArray(p.tags)
           ? p.tags.filter((t): t is string => typeof t === "string")
           : [],
@@ -138,6 +165,12 @@ export function settingsFromCms(value: unknown): SiteSettings {
     profile: mergeText(defaultSettings.profile, s.profile),
     home: mergeText(defaultSettings.home, s.home),
     appearance: { ...defaultSettings.appearance },
+    labels: mergeText(defaultSettings.labels, s.labels),
+    logos: { ...defaultSettings.logos },
+    seo: {
+      ...defaultSettings.seo,
+      ...mergeText({ title: "", description: "" }, s.seo),
+    },
     hero: { ...defaultSettings.hero },
   };
   if (
@@ -162,6 +195,19 @@ export function settingsFromCms(value: unknown): SiteSettings {
       }));
       result[key] = mapped;
     }
+  }
+  for (const key of ["light", "dark", "icon"] as const) {
+    const image = record(s.logos)[key];
+    if (image) {
+      result.logos[key] = stillImageFromCms(image);
+      if (result.logos[key]?.type === "video")
+        throw new Error("Logos must be still images.");
+    }
+  }
+  if (record(s.seo).image) {
+    result.seo.image = stillImageFromCms(record(s.seo).image);
+    if (result.seo.image.type === "video")
+      throw new Error("Sharing images must be still images.");
   }
   const appearance = record(s.appearance);
   if (["manrope", "system", "georgia"].includes(text(appearance.bodyFont)))
@@ -193,8 +239,8 @@ export function settingsFromCms(value: unknown): SiteSettings {
 // Explicit projection: no raw drafts, credentials or unrelated document fields reach the site.
 const mediaProjection = `type,alt,caption,credit,"src":select(type == "video" => video.asset->url, image.asset->url),"width":select(type == "video" => width,image.asset->metadata.dimensions.width),"height":select(type == "video" => height,image.asset->metadata.dimensions.height),"poster":poster.asset->url,"focalX":image.hotspot.x,"focalY":image.hotspot.y`;
 export const contentQuery = `{
-"projects":*[_type == "project" && approved == true && !(_id in path("drafts.**")) && !(_id in path("versions.**"))]{_id,title,"slug":slug.current,discipline,sector,year,location,status,introduction,overview,challenge,approach,outcome,role,contribution,practice,collaborators,featuredOrder,approved,placeholder,tags,hero{${mediaProjection}},gallery[]{${mediaProjection}}},
-"settings":*[_type == "siteSettings" && _id == "siteSettings"][0]{brand,profile,approach,capabilities,appearance,hero{mode,images[]{${mediaProjection}},video{${mediaProjection}}},home{heroEyebrow,heroIntro,heroIntroEmphasis,heroStatement,heroStatementEmphasis,heroDescription,introEyebrow,introTitle,introEmphasis,collectionTitle,collectionEmphasis,collectionDescription,aboutTitle,aboutEmphasis,approachTitle,approachEmphasis,approachDescription,contactTitle,contactEmphasis,contactDescription,interludeTitle,interludeEmphasis,aboutImage{${mediaProjection}},interludeImage{${mediaProjection}}}}
+"projects":*[_type == "project" && approved == true && !(_id in path("drafts.**")) && !(_id in path("versions.**"))]{_id,title,"slug":slug.current,discipline,sector,year,location,status,introduction,overview,challenge,approach,outcome,role,contribution,practice,collaborators,featuredOrder,approved,placeholder,tags,seo{title,description,image{${mediaProjection}}},hero{${mediaProjection}},gallery[]{${mediaProjection}}},
+"settings":*[_type == "siteSettings" && _id == "siteSettings"][0]{brand,profile,approach,capabilities,appearance,labels,logos{light{${mediaProjection}},dark{${mediaProjection}},icon{${mediaProjection}}},seo{title,description,image{${mediaProjection}}},hero{mode,images[]{${mediaProjection}},video{${mediaProjection}}},home{heroEyebrow,heroIntro,heroIntroEmphasis,heroStatement,heroStatementEmphasis,heroDescription,introEyebrow,introTitle,introEmphasis,collectionTitle,collectionEmphasis,collectionDescription,aboutTitle,aboutEmphasis,approachTitle,approachEmphasis,approachDescription,contactTitle,contactEmphasis,contactDescription,interludeTitle,interludeEmphasis,aboutImage{${mediaProjection}},interludeImage{${mediaProjection}}}}
 }`;
 export async function fetchCmsContent(
   env: Record<string, string | undefined> = process.env,
