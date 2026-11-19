@@ -10,6 +10,7 @@ const editableFields = [
   "location",
   "status",
   "introduction",
+  "coverLabel",
   "overview",
   "challenge",
   "approach",

@@ -29,6 +29,7 @@ export type Project = {
   contribution?: string;
   practice?: string;
   collaborators?: string[];
+  coverLabel?: string;
   hero: Media;
   gallery: Media[];
   featuredOrder: number;

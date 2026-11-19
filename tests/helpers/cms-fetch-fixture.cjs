@@ -21,6 +21,7 @@ const project = {
   placeholder: false,
   featuredOrder: 1,
   hero: image,
+  coverLabel: "Explore the courtyard",
   gallery: [
     image,
     {
@@ -45,6 +46,7 @@ globalThis.fetch = async (input, init) => {
             title: "Single image study",
             slug: "single-image",
             gallery: [],
+            coverLabel: undefined,
             featuredOrder: 2,
           },
           {

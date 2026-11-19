@@ -164,7 +164,7 @@ export function ProjectStory({
         <figure className="story-hero">
           <button
             className="hero-enlarge-button"
-            aria-label={`Enlarge image: ${project.hero.alt}`}
+            aria-label={`${project.coverLabel || "Enlarge image"}: ${project.hero.alt}`}
             onClick={() => setZoom(0)}
           >
             <Media
@@ -175,7 +175,7 @@ export function ProjectStory({
             />
             <span className="enlarge-label">
               <Icon name="expand" />
-              Explore image
+              {project.coverLabel || "Explore image"}
             </span>
           </button>
           <figcaption>{project.hero.caption}</figcaption>

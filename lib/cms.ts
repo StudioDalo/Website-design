@@ -102,6 +102,7 @@ export function projectsFromCms(values: unknown): Project[] {
         discipline: requiredText(p.discipline, "discipline"),
         sector: requiredText(p.sector, "sector"),
         introduction: requiredText(p.introduction, "introduction"),
+        coverLabel: text(p.coverLabel).trim() || undefined,
         hero,
         gallery: [hero, ...gallery.filter((m) => m.src !== hero.src)],
         featuredOrder: Number.isFinite(p.featuredOrder)
@@ -239,7 +240,7 @@ export function settingsFromCms(value: unknown): SiteSettings {
 // Explicit projection: no raw drafts, credentials or unrelated document fields reach the site.
 const mediaProjection = `type,alt,caption,credit,"src":select(type == "video" => video.asset->url, image.asset->url),"width":select(type == "video" => width,image.asset->metadata.dimensions.width),"height":select(type == "video" => height,image.asset->metadata.dimensions.height),"poster":poster.asset->url,"focalX":image.hotspot.x,"focalY":image.hotspot.y`;
 export const contentQuery = `{
-"projects":*[_type == "project" && approved == true && !(_id in path("drafts.**")) && !(_id in path("versions.**"))]{_id,title,"slug":slug.current,discipline,sector,year,location,status,introduction,overview,challenge,approach,outcome,role,contribution,practice,collaborators,featuredOrder,approved,placeholder,tags,seo{title,description,image{${mediaProjection}}},hero{${mediaProjection}},gallery[]{${mediaProjection}}},
+"projects":*[_type == "project" && approved == true && !(_id in path("drafts.**")) && !(_id in path("versions.**"))]{_id,title,"slug":slug.current,discipline,sector,year,location,status,introduction,overview,challenge,approach,outcome,role,contribution,practice,collaborators,featuredOrder,approved,placeholder,tags,coverLabel,seo{title,description,image{${mediaProjection}}},hero{${mediaProjection}},gallery[]{${mediaProjection}}},
 "settings":*[_type == "siteSettings" && _id == "siteSettings"][0]{brand,profile,approach,capabilities,appearance,labels,logos{light{${mediaProjection}},dark{${mediaProjection}},icon{${mediaProjection}}},seo{title,description,image{${mediaProjection}}},hero{mode,images[]{${mediaProjection}},video{${mediaProjection}}},home{heroEyebrow,heroIntro,heroIntroEmphasis,heroStatement,heroStatementEmphasis,heroDescription,introEyebrow,introTitle,introEmphasis,collectionTitle,collectionEmphasis,collectionDescription,aboutTitle,aboutEmphasis,approachTitle,approachEmphasis,approachDescription,contactTitle,contactEmphasis,contactDescription,interludeTitle,interludeEmphasis,aboutImage{${mediaProjection}},interludeImage{${mediaProjection}}}}
 }`;
 export async function fetchCmsContent(

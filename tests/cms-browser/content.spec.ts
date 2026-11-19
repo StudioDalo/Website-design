@@ -137,7 +137,9 @@ test("single-image gallery disables navigation; video gallery retains native con
 }) => {
   await mediaRoutes(page);
   await page.goto("/work/single-image/");
-  await page.getByRole("button", { name: /^Enlarge image:/ }).click();
+  const defaultCover = page.getByRole("button", { name: /^Enlarge image:/ });
+  await expect(defaultCover).toHaveText("Explore image");
+  await defaultCover.click();
   await expect(page.locator(".gallery-counter")).toHaveText("1 / 1");
   await expect(
     page.getByRole("button", { name: "Next image", exact: true }),
@@ -147,7 +149,12 @@ test("single-image gallery disables navigation; video gallery retains native con
   ).toHaveCount(0);
   await page.keyboard.press("Escape");
   await page.goto("/work/cms-courtyard/");
-  await page.getByRole("button", { name: /^Enlarge image:/ }).click();
+  const customCover = page.getByRole("button", {
+    name: "Explore the courtyard: CMS test courtyard",
+  });
+  await expect(customCover).toHaveText("Explore the courtyard");
+  await expect(page.locator(".story-hero figcaption")).toHaveText("Local test image");
+  await customCover.click();
   await page.getByRole("button", { name: "Next image", exact: true }).click();
   await expect(page.locator(".gallery-stage video")).toHaveAttribute(
     "controls",

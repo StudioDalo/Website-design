@@ -213,6 +213,14 @@ export const project = defineType({
           ),
     }),
     defineField({
+      ...string(
+        "coverLabel",
+        "Cover label",
+        'Button text on this project’s cover. Leave blank to use “Explore image”.',
+      ),
+      group: "media",
+    }),
+    defineField({
       name: "gallery",
       title: "Gallery",
       type: "array",
