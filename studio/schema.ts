@@ -1,4 +1,5 @@
 import { defineField, defineType } from "sanity";
+import { HeroSequenceInput } from "./hero-sequence-input";
 import { instagramProfile } from "../lib/social";
 const string = (name: string, title: string, description?: string) =>
   defineField({ name, title, type: "string", description });
@@ -472,11 +473,21 @@ export const siteSettings = defineType({
         }),
         defineField({
           name: "images",
-          title: "Hero images in order",
+          title: "Hero visuals in playback order",
           type: "array",
-          of: [{ type: "mediaItem" }],
+          of: [
+            {
+              type: "reference",
+              title: "Project cover",
+              to: [{ type: "project" }],
+              weak: true,
+              options: { filter: "approved == true", disableNew: true },
+            },
+            { type: "mediaItem", title: "Uploaded still" },
+          ],
+          components: { input: HeroSequenceInput },
           description:
-            "Choose up to six still images. Leave empty to use project covers.",
+            "Add a project cover or an uploaded still. Drag to set playback order. Use up to six visuals. Clear the list to restore automatic covers.",
           hidden: ({ parent }) => parent?.mode === "video",
           validation: (r) =>
             r

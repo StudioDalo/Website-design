@@ -4,6 +4,7 @@ import type { Project, Media as MediaType } from "@/lib/types";
 import { useSite } from "./site-provider";
 import { Media } from "./media";
 import { Icon } from "./icons";
+import { automaticHeroProjects } from "@/lib/hero-projects";
 import { useQuietMotion } from "./motion-preference";
 
 const clamp = (v: number) => Math.max(0, Math.min(1, v));
@@ -21,7 +22,7 @@ export function CinematicHero({ projects }: { projects: Project[] }) {
   const [loadedCount, setLoadedCount] = useState(1);
   const ready = useRef(new Set<string>());
   const maskId = useId().replaceAll(":", "");
-  const selected = [projects[0], projects[1], projects[5]].filter(Boolean);
+  const selected = automaticHeroProjects(projects);
   const fallback: MediaType = {
     src: "/media/courtyard-render.webp",
     type: "image",

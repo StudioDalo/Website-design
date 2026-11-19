@@ -158,7 +158,10 @@ function mergeText<T extends object>(base: T, input: unknown): T {
   }
   return result;
 }
-export function settingsFromCms(value: unknown): SiteSettings {
+export function settingsFromCms(
+  value: unknown,
+  projects: Project[] = [],
+): SiteSettings {
   const s = record(value);
   const result: SiteSettings = {
     ...defaultSettings,
@@ -221,7 +224,14 @@ export function settingsFromCms(value: unknown): SiteSettings {
   const hero = record(s.hero);
   if (Array.isArray(hero.images))
     result.hero.images = hero.images
-      .map(mediaFromCms)
+      .flatMap((item) => {
+        const entry = record(item);
+        if (entry._type === "reference") {
+          const project = projects.find((p) => p.id === entry._ref);
+          return project ? [project.hero] : [];
+        }
+        return [mediaFromCms(entry)];
+      })
       .filter((m) => m.type !== "video")
       .slice(0, 6);
   if (hero.mode === "video" && hero.video) {
@@ -241,7 +251,7 @@ export function settingsFromCms(value: unknown): SiteSettings {
 const mediaProjection = `type,alt,caption,credit,"src":select(type == "video" => video.asset->url, image.asset->url),"width":select(type == "video" => width,image.asset->metadata.dimensions.width),"height":select(type == "video" => height,image.asset->metadata.dimensions.height),"poster":poster.asset->url,"focalX":image.hotspot.x,"focalY":image.hotspot.y`;
 export const contentQuery = `{
 "projects":*[_type == "project" && approved == true && !(_id in path("drafts.**")) && !(_id in path("versions.**"))]{_id,title,"slug":slug.current,discipline,sector,year,location,status,introduction,overview,challenge,approach,outcome,role,contribution,practice,collaborators,featuredOrder,approved,placeholder,tags,coverLabel,seo{title,description,image{${mediaProjection}}},hero{${mediaProjection}},gallery[]{${mediaProjection}}},
-"settings":*[_type == "siteSettings" && _id == "siteSettings"][0]{brand,profile,approach,capabilities,appearance,labels,logos{light{${mediaProjection}},dark{${mediaProjection}},icon{${mediaProjection}}},seo{title,description,image{${mediaProjection}}},hero{mode,images[]{${mediaProjection}},video{${mediaProjection}}},home{heroEyebrow,heroIntro,heroIntroEmphasis,heroStatement,heroStatementEmphasis,heroDescription,introEyebrow,introTitle,introEmphasis,collectionTitle,collectionEmphasis,collectionDescription,aboutTitle,aboutEmphasis,approachTitle,approachEmphasis,approachDescription,contactTitle,contactEmphasis,contactDescription,interludeTitle,interludeEmphasis,aboutImage{${mediaProjection}},interludeImage{${mediaProjection}}}}
+"settings":*[_type == "siteSettings" && _id == "siteSettings"][0]{brand,profile,approach,capabilities,appearance,labels,logos{light{${mediaProjection}},dark{${mediaProjection}},icon{${mediaProjection}}},seo{title,description,image{${mediaProjection}}},hero{mode,images[]{_type,_ref,${mediaProjection}},video{${mediaProjection}}},home{heroEyebrow,heroIntro,heroIntroEmphasis,heroStatement,heroStatementEmphasis,heroDescription,introEyebrow,introTitle,introEmphasis,collectionTitle,collectionEmphasis,collectionDescription,aboutTitle,aboutEmphasis,approachTitle,approachEmphasis,approachDescription,contactTitle,contactEmphasis,contactDescription,interludeTitle,interludeEmphasis,aboutImage{${mediaProjection}},interludeImage{${mediaProjection}}}}
 }`;
 export async function fetchCmsContent(
   env: Record<string, string | undefined> = process.env,
@@ -279,8 +289,9 @@ export async function fetchCmsContent(
     );
   const json: unknown = await response.json();
   const result = record(record(json).result);
+  const projects = projectsFromCms(result.projects);
   return {
-    projects: projectsFromCms(result.projects),
-    settings: settingsFromCms(result.settings),
+    projects,
+    settings: settingsFromCms(result.settings, projects),
   };
 }

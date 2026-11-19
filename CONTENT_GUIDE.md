@@ -95,7 +95,7 @@ The main editable content boundary is unchanged. `brand.name` and `brand.wordmar
 
 On cards, a labelled placeholder's numeric suffix is shortened visually; the full title remains in its project metadata and accessible story heading. The visible story eyebrow still identifies the placeholder number. Do not remove demonstration disclosures while the images/narratives are fictional.
 
-The cinematic opening currently draws scenes from approved project positions 1, 2 and 6. If the collection order or size changes significantly, adjust that selection in `components/cinematic-hero.tsx`. Only approved project records reach the component. The opening uses still images, not film footage. The still reel and collection motion honor reduced-motion/data-saving preferences.
+The automatic opening sequence uses covers from approved projects at collection positions 1, 2 and 6. Open **Website settings → Hero** to see their names and thumbnails. Choose **Edit this sequence** to pin those projects and drag them into a different order. Add **Project cover** to choose another approved project. Its cover follows future published image changes. You can also use uploaded stills or select Short film. The still reel and collection motion honor reduced-motion/data-saving preferences.
 
 See `REDESIGN_NOTES.md` for the new component and styling boundaries and `MEDIA_CREDITS.md` for generated-image provenance and the included font licences. The source TTF/WOFF2 files are bundled; ordinary setup does not require font-conversion tools.
 

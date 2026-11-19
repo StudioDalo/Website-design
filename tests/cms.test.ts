@@ -1,4 +1,5 @@
 import { test } from "node:test";
+import { automaticHeroProjects } from "../lib/hero-projects";
 import { instagramProfile } from "../lib/social";
 import assert from "node:assert/strict";
 import {
@@ -61,6 +62,50 @@ test("CMS changes can publish a new project, reorder and remove all projects", (
     /slug/,
   );
 });
+test("the automatic hero keeps the first, second and sixth available project covers", () => {
+  assert.deepEqual(automaticHeroProjects(["a", "b", "c", "d", "e", "f", "g"]), [
+    "a",
+    "b",
+    "f",
+  ]);
+  assert.deepEqual(automaticHeroProjects(["a", "b", "c"]), ["a", "b"]);
+  assert.deepEqual(automaticHeroProjects([]), []);
+});
+
+test("published hero references follow project covers in editor order alongside uploaded stills", async () => {
+  const reference = (_ref: string) => ({ _type: "reference", _ref });
+  const second = {
+    ...project,
+    _id: "second",
+    slug: "second",
+    hero: { ...media, alt: "Updated second cover" },
+  };
+  const result = await fetchCmsContent(
+    { SANITY_PROJECT_ID: "example", SANITY_DATASET: "production" },
+    async () =>
+      Response.json({
+        result: {
+          settings: {
+            hero: {
+              images: [
+                reference("second"),
+                reference("withdrawn"),
+                reference("missing"),
+                { ...media, alt: "Uploaded still" },
+                reference(project._id),
+              ],
+            },
+          },
+          projects: [project, second, { _id: "withdrawn", approved: false }],
+        },
+      }),
+  );
+  assert.deepEqual(
+    result?.settings.hero.images.map((item) => item.alt),
+    ["Updated second cover", "Uploaded still", media.alt],
+  );
+});
+
 test("CMS media requires HTTPS approved CDN, dimensions, descriptions and video poster", () => {
   assert.equal(mediaFromCms(media).aspectRatio, 1.6);
   assert.equal(mediaFromCms(media).focalX, 0.3);
